@@ -11,8 +11,13 @@
 	import type { MediaPlayerElement } from "vidstack/elements";
 
 	import VideoLayout from "./components/layouts/VideoLayout.svelte";
+	import type { videoProps } from "./types";
 
-	let player: MediaPlayerElement;
+	let { player, isPlayerReady, videoProps } = $props<{
+		player: MediaPlayerElement;
+		isPlayerReady: boolean;
+		videoProps: videoProps;
+	}>();
 
 	onMount(() => {
 		/**
@@ -42,27 +47,25 @@
 		}
 	}
 
-	const delayedPlay = async () => {
+	const setTime = async () => {
 		console.log("ready");
 		await new Promise((resolve) => {
-			setTimeout(resolve, 100);
+			setTimeout(resolve, 200);
 		});
-		console.log("play");
-		player.paused = false;
-		player.currentTime = 20;
 	};
 
 	// We can listen for the `can-play` event to be notified when the player is ready.
 	function onCanPlay(event: MediaCanPlayEvent) {
-		delayedPlay();
+		isPlayerReady = true;
+		//setTime();
 		// ...
 	}
 </script>
 
 <media-player
-	class="ring-media-focus aspect-video w-full overflow-hidden rounded-md bg-slate-900 font-sans text-white data-[focus]:ring-4"
+	class="aspect-video w-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
 	title="Sprite Fight"
-	src="https://www.youtube.com/watch?v=vx4kLgnFexo"
+	src={videoProps.src}
 	crossorigin
 	playsinline
 	on:provider-change={onProviderChange}
@@ -72,7 +75,7 @@
 	<media-provider>
 		<media-poster
 			class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-			src="https://i.ytimg.com/vi/vx4kLgnFexo/maxresdefault.jpg"
+			src={videoProps.thumbnail}
 			alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
 		/>
 	</media-provider>

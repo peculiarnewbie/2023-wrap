@@ -1,6 +1,31 @@
 <script lang="ts">
 	import "../app.css";
 	import Player from "$lib/Player.svelte";
+	import { MediaPlayerElement } from "vidstack/elements";
+	import type { videoProps } from "$lib/types";
+
+	let man = $state("yo");
+	let isPlayerReady = $state(false);
+	let players: MediaPlayerElement[] = $state([new MediaPlayerElement(), new MediaPlayerElement()]);
+
+	const playVideo = (index: number) => {
+		players[index].paused = false;
+		players[index].currentTime = videosProps[index].start;
+		man = "lah";
+	};
+
+	let videosProps: videoProps[] = [
+		{
+			src: "https://www.youtube.com/watch?v=vx4kLgnFexo",
+			thumbnail: "https://i.ytimg.com/vi/vx4kLgnFexo/maxresdefault.jpg",
+			start: 66
+		},
+		{
+			src: "https://www.youtube.com/watch?v=toKJP3luQbI",
+			thumbnail: "https://i.ytimg.com/vi/toKJP3luQbI/maxresdefault.jpg",
+			start: 57
+		}
+	];
 </script>
 
 <div class="flex flex-col text-slate-200">
@@ -8,7 +33,12 @@
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 	</p>
-	<div class="flex h-[720px] w-[1200px]">
-		<Player></Player>
-	</div>
+	{#each videosProps as video, i}
+		<div class="flex h-[720px] w-[1200px]">
+			<Player bind:player={players[i]} bind:isPlayerReady videoProps={video}></Player>
+			{#if isPlayerReady}
+				<button onclick={() => playVideo(i)} class="p-2"> Play </button>
+			{/if}
+		</div>
+	{/each}
 </div>
