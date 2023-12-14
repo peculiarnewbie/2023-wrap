@@ -27,6 +27,7 @@
   "type": "module",
   "dependencies": {
     "media-icons": "^0.10.0",
+    "tailwindcss-animate": "^1.0.7",
     "vidstack": "next"
   }
 }
