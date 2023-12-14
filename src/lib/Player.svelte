@@ -11,7 +11,6 @@
 	import type { MediaPlayerElement } from "vidstack/elements";
 
 	import VideoLayout from "./components/layouts/VideoLayout.svelte";
-	import { textTracks } from "./tracks";
 
 	let player: MediaPlayerElement;
 
@@ -27,7 +26,6 @@
 		 * </media-provider>
 		 * ```
 		 */
-		for (const track of textTracks) player.textTracks.add(track);
 
 		// Subscribe to state updates.
 		return player.subscribe(({ paused, viewType }) => {
@@ -44,8 +42,19 @@
 		}
 	}
 
+	const delayedPlay = async () => {
+		console.log("ready");
+		await new Promise((resolve) => {
+			setTimeout(resolve, 100);
+		});
+		console.log("play");
+		player.paused = false;
+		player.currentTime = 20;
+	};
+
 	// We can listen for the `can-play` event to be notified when the player is ready.
 	function onCanPlay(event: MediaCanPlayEvent) {
+		delayedPlay();
 		// ...
 	}
 </script>
@@ -63,12 +72,10 @@
 	<media-provider>
 		<media-poster
 			class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-			src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=1200"
+			src="https://i.ytimg.com/vi/vx4kLgnFexo/maxresdefault.jpg"
 			alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
 		/>
 	</media-provider>
 
-	<VideoLayout
-		thumbnails="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt"
-	/>
+	<VideoLayout />
 </media-player>
