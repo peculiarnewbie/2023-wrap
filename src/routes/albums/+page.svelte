@@ -8,6 +8,7 @@
 
 	let man = $state("yo");
 	let isPlayerReady = $state(false);
+	let isStarted = $state(false);
 	let player: MediaPlayerElement = $state();
 	let currentVideoProps = $state(albums[0].videoProps);
 
@@ -27,7 +28,7 @@
 		player.currentTime = video.startTime;
 		
 		*/
-		isPlayerReady = false;
+		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;
 		currentVideoProps = albums[index].videoProps;
 		while (!isPlayerReady) {
@@ -36,17 +37,19 @@
 				setTimeout(resolve, 100);
 			});
 		}
-		if (player.paused) player.paused = false;
+		console.log("played");
 		//player.paused = false;
-		player.volume = 0.3;
 		player.currentTime = currentVideoProps.startTime;
+		player.volume = 0.3;
+		isStarted = true;
 	};
 
 	const checkPosition = () => {
 		if (isPlayerReady) {
 			const scrollY = window.scrollY;
 			if (scrollY > currentPosition * 1000 || scrollY < (currentPosition - 1) * 1000) {
-				playVideo(Math.floor(scrollY / 1000));
+				isPlayerReady = false;
+				setTimeout(() => playVideo(Math.floor(scrollY / 1000)), 100);
 			}
 		}
 	};
@@ -64,13 +67,23 @@
 	}
 </script>
 
-<div class="flex h-[3900px] flex-col bg-black text-slate-200">
+<div class={`flex ${isStarted ? "h-[3900px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
 	<h1>Welcome to SvelteKit</h1>
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 	</p>
-	<div class="relative flex h-[600px] w-screen justify-center">
+	<div class="relative flex h-[600px] w-full justify-center">
 		<div class="fixed flex w-full max-w-5xl justify-center p-8">
+			{#if !isStarted}
+				<div class="fixed z-50 flex h-[720px] w-full items-center justify-center bg-black">
+					<button
+						class={`rounded-md bg-blue-500 px-4 py-2 text-2xl ${isPlayerReady ? "" : "hidden"}`}
+						onclick={() => {
+							playVideo(0);
+						}}>Start</button
+					>
+				</div>
+			{/if}
 			<div class="flex h-[720px] w-full flex-col">
 				<div class={`${isPlayerReady ? "" : "border-4 border-red-500"}`}>
 					<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
