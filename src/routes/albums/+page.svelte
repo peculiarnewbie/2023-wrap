@@ -36,6 +36,7 @@
 				setTimeout(resolve, 100);
 			});
 		}
+		if (player.paused) player.paused = false;
 		//player.paused = false;
 		player.volume = 0.3;
 		player.currentTime = currentVideoProps.startTime;
@@ -45,7 +46,6 @@
 		if (isPlayerReady) {
 			const scrollY = window.scrollY;
 			if (scrollY > currentPosition * 1000 || scrollY < (currentPosition - 1) * 1000) {
-				console.log("switching to", Math.floor(scrollY / 1000));
 				playVideo(Math.floor(scrollY / 1000));
 			}
 		}
@@ -64,7 +64,7 @@
 	}
 </script>
 
-<div class="flex h-[10000px] flex-col bg-black text-slate-200">
+<div class="flex h-[3900px] flex-col bg-black text-slate-200">
 	<h1>Welcome to SvelteKit</h1>
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
