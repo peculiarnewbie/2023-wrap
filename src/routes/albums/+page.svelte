@@ -27,19 +27,25 @@
 		player.currentTime = video.startTime;
 		
 		*/
+		isPlayerReady = false;
 		currentPosition = index + 1;
 		currentVideoProps = albums[index].videoProps;
+		while (!isPlayerReady) {
+			console.log("waiting for player");
+			await new Promise((resolve) => {
+				setTimeout(resolve, 200);
+			});
+		}
+		player.volume = 0.3;
+		player.paused = false;
 		await new Promise((resolve) => {
 			setTimeout(resolve, 100);
 		});
-		player.volume = 0.3;
-		player.paused = false;
 		player.currentTime = currentVideoProps.startTime;
 	};
 
 	const checkPosition = () => {
 		const scrollY = window.scrollY;
-		console.log(scrollY);
 		if (scrollY > currentPosition * 1000 || scrollY < (currentPosition - 1) * 1000) {
 			playVideo(Math.floor(scrollY / 1000));
 		}
