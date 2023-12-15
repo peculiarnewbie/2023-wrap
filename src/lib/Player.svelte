@@ -64,7 +64,7 @@
 
 <media-player
 	class="aspect-video w-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
-	title="Sprite Fight"
+	title={videoProps.title}
 	src={videoProps.src}
 	crossorigin
 	playsinline
@@ -76,7 +76,7 @@
 		<media-poster
 			class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
 			src={videoProps.thumbnail}
-			alt="Girl walks into campfire with gnomes surrounding her friend ready for their next meal!"
+			alt={videoProps.alt}
 		/>
 	</media-provider>
 

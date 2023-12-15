@@ -12,7 +12,7 @@
 		for (let i = 0; i < players.length; i++) {
 			if (i == index) {
 				players[i].paused = false;
-				players[i].currentTime = videosProps[index].start;
+				players[i].currentTime = albums[index].videosProps.start;
 				players[i].volume = 0.3;
 			} else {
 				players[i].paused = true;
@@ -21,16 +21,45 @@
 		man = "lah";
 	};
 
-	let videosProps: videoProps[] = [
+	let albums = [
 		{
-			src: "https://www.youtube.com/watch?v=vx4kLgnFexo",
-			thumbnail: "https://i.ytimg.com/vi/vx4kLgnFexo/maxresdefault.jpg",
-			start: 66
+			pos: 1,
+			artist: "Paramore",
+			title: "This is Why",
+			albumArt: "",
+			videosProps: {
+				title: "Paramore - Running Out of Time",
+				src: "https://www.youtube.com/watch?v=toKJP3luQbI",
+				thumbnail: "https://i.ytimg.com/vi/toKJP3luQbI/maxresdefault.jpg",
+				start: 57,
+				alt: "my favorite"
+			}
 		},
 		{
-			src: "https://www.youtube.com/watch?v=toKJP3luQbI",
-			thumbnail: "https://i.ytimg.com/vi/toKJP3luQbI/maxresdefault.jpg",
-			start: 57
+			pos: 3,
+			artist: "Black Country, New Road",
+			title: "Live at Bush Hall",
+			albumArt: "",
+			videosProps: {
+				title: "Black Country, New Road - 'Live at Bush Hall'",
+				src: "https://www.youtube.com/watch?v=VbHV8oObR54&t=2751s",
+				thumbnail: "https://i.ytimg.com/vi/VbHV8oObR54/maxresdefault.jpg",
+				start: 2726,
+				alt: "so happy they're still together"
+			}
+		},
+		{
+			pos: 8,
+			artist: "Mitski",
+			title: "My Love Mine All Mine",
+			albumArt: "",
+			videosProps: {
+				title: "Mitski - My Love Mine All Mine",
+				src: "https://www.youtube.com/watch?v=vx4kLgnFexo",
+				thumbnail: "https://i.ytimg.com/vi/vx4kLgnFexo/maxresdefault.jpg",
+				start: 66,
+				alt: "very chill and sad"
+			}
 		}
 	];
 </script>
@@ -40,13 +69,15 @@
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 	</p>
-	{#each videosProps as video, i}
-		<div class="flex h-[720px] w-[1200px]">
-			<Player bind:player={players[i]} bind:isPlayerReady videoProps={video}></Player>
-			{#if isPlayerReady}
-				<button onclick={() => playVideo(i)} class="p-2"> Play </button>
-				<p>{players[i].qualities.length}</p>
-			{/if}
+	{#each albums as album, i}
+		<div class="flex justify-center">
+			<div class="flex h-[720px] w-[1200px] flex-col">
+				<Player bind:player={players[i]} bind:isPlayerReady videoProps={album.videosProps}></Player>
+				{#if isPlayerReady}
+					<button onclick={() => playVideo(i)} class="p-2"> Play </button>
+					<p>{players[i].qualities.length}</p>
+				{/if}
+			</div>
 		</div>
 	{/each}
 </div>
