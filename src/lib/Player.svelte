@@ -11,12 +11,12 @@
 	import type { MediaPlayerElement } from "vidstack/elements";
 
 	import VideoLayout from "./components/layouts/VideoLayout.svelte";
-	import type { videoProps } from "./types";
+	import type { VideoProps } from "./types";
 
 	let { player, isPlayerReady, videoProps } = $props<{
 		player: MediaPlayerElement;
 		isPlayerReady: boolean;
-		videoProps: videoProps;
+		videoProps: VideoProps;
 	}>();
 
 	onMount(() => {
@@ -60,6 +60,11 @@
 		//setTime();
 		// ...
 	}
+
+	$effect(() => {
+		console.log("video changed:", videoProps.title);
+		isPlayerReady = false;
+	});
 </script>
 
 <media-player
@@ -75,7 +80,6 @@
 	<media-provider>
 		<media-poster
 			class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-			src={videoProps.thumbnail}
 			alt={videoProps.alt}
 		/>
 	</media-provider>
