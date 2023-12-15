@@ -42,9 +42,7 @@
 	</p>
 	{#each videosProps as video, i}
 		<div class="flex h-[720px] w-[1200px]">
-			<!--
-				<Player bind:player={players[i]} bind:isPlayerReady videoProps={video}></Player>
-			-->
+			<Player bind:player={players[i]} bind:isPlayerReady videoProps={video}></Player>
 			{#if isPlayerReady}
 				<button onclick={() => playVideo(i)} class="p-2"> Play </button>
 				<p>{players[i].qualities.length}</p>
