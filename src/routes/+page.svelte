@@ -9,8 +9,15 @@
 	let players: MediaPlayerElement[] = $state([new MediaPlayerElement(), new MediaPlayerElement()]);
 
 	const playVideo = (index: number) => {
-		players[index].paused = false;
-		players[index].currentTime = videosProps[index].start;
+		for (let i = 0; i < players.length; i++) {
+			if (i == index) {
+				players[i].paused = false;
+				players[i].currentTime = videosProps[index].start;
+				players[i].volume = 0.3;
+			} else {
+				players[i].paused = true;
+			}
+		}
 		man = "lah";
 	};
 
@@ -38,6 +45,7 @@
 			<Player bind:player={players[i]} bind:isPlayerReady videoProps={video}></Player>
 			{#if isPlayerReady}
 				<button onclick={() => playVideo(i)} class="p-2"> Play </button>
+				<p>{players[i].qualities.length}</p>
 			{/if}
 		</div>
 	{/each}
