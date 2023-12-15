@@ -67,7 +67,7 @@
 	}
 </script>
 
-<div class={`flex ${isStarted ? "h-[3900px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
+<div class={`flex ${isStarted ? "h-[3500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
 	<h1>Welcome to SvelteKit</h1>
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
@@ -76,12 +76,16 @@
 		<div class="fixed flex w-full max-w-5xl justify-center p-8">
 			{#if !isStarted}
 				<div class="fixed z-50 flex h-[720px] w-full items-center justify-center bg-black">
-					<button
-						class={`rounded-md bg-blue-500 px-4 py-2 text-2xl ${isPlayerReady ? "" : "hidden"}`}
-						onclick={() => {
-							playVideo(0);
-						}}>Start</button
-					>
+					{#if isPlayerReady}
+						<button
+							class={`rounded-md bg-blue-500 px-4 py-2 text-2xl ${isPlayerReady ? "" : "hidden"}`}
+							onclick={() => {
+								playVideo(0);
+							}}>Start</button
+						>
+					{:else}
+						<p>loading...</p>
+					{/if}
 				</div>
 			{/if}
 			<div class="flex h-[720px] w-full flex-col">
@@ -103,5 +107,5 @@
 			</div>
 		</div>
 	</div>
-	<p>scroll down</p>
+	<p>try scrolling down</p>
 </div>
