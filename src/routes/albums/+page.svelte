@@ -60,8 +60,8 @@
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 	</p>
-	<div class="relative h-[600px] w-screen">
-		<div class="fixed flex w-full justify-center p-16">
+	<div class="relative flex h-[600px] w-screen justify-center">
+		<div class="fixed flex w-full max-w-5xl justify-center p-8">
 			<div class="flex h-[720px] w-full flex-col">
 				<div class={`${isPlayerReady ? "" : "border-4 border-red-500"}`}>
 					<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
@@ -81,4 +81,5 @@
 			</div>
 		</div>
 	</div>
+	<p>scroll down</p>
 </div>
