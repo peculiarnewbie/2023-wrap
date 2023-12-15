@@ -7,7 +7,7 @@ export let albums = [
 		videoProps: {
 			title: "Paramore - Running Out of Time",
 			src: "https://www.youtube.com/watch?v=toKJP3luQbI",
-			startTime: 57,
+			startTime: 58,
 			alt: "my favorite"
 		}
 	},
@@ -19,7 +19,7 @@ export let albums = [
 		videoProps: {
 			title: "Black Country, New Road - 'Live at Bush Hall'",
 			src: "https://www.youtube.com/watch?v=VbHV8oObR54&t=2751s",
-			startTime: 2726,
+			startTime: 2725.5,
 			alt: "so happy they're still together"
 		}
 	},
