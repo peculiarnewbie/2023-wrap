@@ -4,7 +4,7 @@
 	import type { MediaPlayerElement } from "vidstack/elements";
 	import type { VideoProps } from "$lib/types";
 	import { albums } from "$lib/albums";
-	import { onMount } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 
 	let man = $state("yo");
 	let isPlayerReady = $state(false);
@@ -33,26 +33,29 @@
 		while (!isPlayerReady) {
 			console.log("waiting for player");
 			await new Promise((resolve) => {
-				setTimeout(resolve, 200);
+				setTimeout(resolve, 100);
 			});
 		}
+		//player.paused = false;
 		player.volume = 0.3;
-		player.paused = false;
-		await new Promise((resolve) => {
-			setTimeout(resolve, 100);
-		});
 		player.currentTime = currentVideoProps.startTime;
 	};
 
 	const checkPosition = () => {
-		const scrollY = window.scrollY;
-		if (scrollY > currentPosition * 1000 || scrollY < (currentPosition - 1) * 1000) {
-			playVideo(Math.floor(scrollY / 1000));
+		if (isPlayerReady) {
+			const scrollY = window.scrollY;
+			if (scrollY > currentPosition * 1000 || scrollY < (currentPosition - 1) * 1000) {
+				console.log("switching to", Math.floor(scrollY / 1000));
+				playVideo(Math.floor(scrollY / 1000));
+			}
 		}
 	};
 
 	onMount(() => {
 		document.addEventListener("scroll", checkPosition);
+	});
+	onDestroy(() => {
+		document.removeEventListener("scroll", checkPosition);
 	});
 
 	let positions: number[] = [];
