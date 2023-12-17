@@ -12,7 +12,7 @@ export let albums = [
 		}
 	},
 	{
-		pos: 3,
+		pos: 2,
 		artist: "Black Country, New Road",
 		title: "Live at Bush Hall",
 		albumArt: "",
@@ -21,6 +21,18 @@ export let albums = [
 			src: "https://www.youtube.com/watch?v=VbHV8oObR54&t=2751s",
 			startTime: 2725.5,
 			alt: "so happy they're still together"
+		}
+	},
+	{
+		pos: 3,
+		artist: "Sufjan Stevens",
+		title: "Javelin",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=OLeCIRC4taY",
+			startTime: 158,
+			alt: "insane production"
 		}
 	},
 	{

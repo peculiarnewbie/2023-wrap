@@ -2,7 +2,7 @@
 	import "../../app.css";
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
-	import type { VideoProps } from "$lib/types";
+	import Background from "$lib/mycomponents/Background.svelte";
 	import { albums } from "$lib/albums";
 	import { onDestroy, onMount } from "svelte";
 	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
@@ -17,19 +17,6 @@
 	let currentVolume = $state(50);
 
 	const playVideo = async (index: number) => {
-		/*for (let i = 0; i < players.length; i++) {
-			if (i == index) {
-				players[i].paused = false;
-				players[i].currentTime = albums[index].videosProps.start;
-			} else {
-				players[i].paused = true;
-			}
-		}
-		const video = albums[index].videosProps;
-		player.src = video.src;
-		player.currentTime = video.startTime;
-		
-		*/
 		player.volume = 0;
 		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;

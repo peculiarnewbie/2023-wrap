@@ -17,7 +17,6 @@
 
 		const volume = Math.floor((pos * 100) / group.clientWidth);
 
-		group.style.setProperty("--slider-fill", `${volume}%`);
 		currentVolume = volume;
 	};
 
@@ -50,6 +49,11 @@
 			}
 		}
 	};
+
+	$effect(() => {
+		const volume = currentVolume;
+		group.style.setProperty("--slider-fill", `${volume}%`);
+	});
 
 	onMount(() => {
 		group.style.setProperty("--slider-fill", `${currentVolume}%`);
