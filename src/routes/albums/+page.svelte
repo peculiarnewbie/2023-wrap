@@ -2,7 +2,7 @@
 	import "../../app.css";
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
-	import Background from "./Background.svelte";
+	import Background from "$lib/mycomponents/Background/Background.svelte";
 	import { albums } from "$lib/albums";
 	import { onDestroy, onMount } from "svelte";
 	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
