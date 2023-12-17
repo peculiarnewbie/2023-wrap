@@ -2,13 +2,13 @@
 	import { onMount } from "svelte";
 	import SliderPreview from "./SliderPreview.svelte";
 	import SliderThumb from "./SliderThumb.svelte";
-	let { currentVolume } = $props<{ currentVolume: number }>();
+	export let currentVolume: number;
 
-	let focus = $state(false);
-	let active = $state(false);
-	let dragging = $state(false);
+	let focus = false;
+	let active = false;
+	let dragging = false;
 
-	let group: HTMLElement = $state();
+	let group: HTMLElement;
 
 	const changeVolume = (e: PointerEvent) => {
 		let pos = e.clientX - group.getBoundingClientRect().left;
@@ -50,10 +50,12 @@
 		}
 	};
 
-	$effect(() => {
-		const volume = currentVolume;
-		group.style.setProperty("--slider-fill", `${volume}%`);
-	});
+	$: {
+		if (group) {
+			const volume = currentVolume;
+			group.style.setProperty("--slider-fill", `${volume}%`);
+		}
+	}
 
 	onMount(() => {
 		group.style.setProperty("--slider-fill", `${currentVolume}%`);
@@ -62,11 +64,11 @@
 
 <div
 	bind:this={group}
-	onpointerdown={setDragging}
-	onpointerenter={() => {
+	on:pointerdown={setDragging}
+	on:canplay={() => {
 		setGroupFocus(true);
 	}}
-	onpointerleave={() => {
+	on:pointerleave={() => {
 		setGroupFocus(false);
 	}}
 	aria-valuemin="0"

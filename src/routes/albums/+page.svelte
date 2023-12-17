@@ -7,14 +7,14 @@
 	import { onDestroy, onMount } from "svelte";
 	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
 
-	let man = $state("yo");
-	let isPlayerReady = $state(false);
-	let isStarted = $state(false);
-	let player: MediaPlayerElement = $state();
-	let currentVideoProps = $state(albums[0].videoProps);
+	let man = "yo";
+	let isPlayerReady = false;
+	let isStarted = false;
+	let player: MediaPlayerElement;
+	let currentVideoProps = albums[0].videoProps;
 
-	let currentPosition = $state(1);
-	let currentVolume = $state(50);
+	let currentPosition = 1;
+	let currentVolume = 50;
 
 	const playVideo = async (index: number) => {
 		player.volume = 0;
@@ -44,15 +44,17 @@
 		}
 	};
 
-	$effect(() => {
-		player.volume = currentVolume / 100;
-	});
+	$: {
+		if (isPlayerReady) {
+			player.volume = currentVolume / 100;
+		}
+	}
 
 	onMount(() => {
 		document.addEventListener("scroll", checkPosition);
 	});
 	onDestroy(() => {
-		document.removeEventListener("scroll", checkPosition);
+		//document.removeEventListener("scroll", checkPosition);
 	});
 
 	let positions: number[] = [];
@@ -69,11 +71,11 @@
 	<div class="relative flex h-[600px] w-full justify-center">
 		<div class="fixed flex w-full max-w-5xl justify-center p-8">
 			{#if !isStarted}
-				<div class="fixed z-50 flex h-[720px] w-full flex-col items-center justify-center bg-black">
+				<div class="fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black">
 					{#if isPlayerReady}
 						<button
-							class={`rounded-md bg-blue-500 px-4 py-2 text-2xl ${isPlayerReady ? "" : "hidden"}`}
-							onclick={() => {
+							class={`rounded-md bg-blue-500 px-4 py-2 text-2xl`}
+							on:click={() => {
 								playVideo(0);
 							}}>Start</button
 						>
@@ -85,13 +87,11 @@
 				</div>
 			{/if}
 			<div class="flex h-[720px] w-full flex-col">
-				<div class={`${isPlayerReady ? "" : "border-4 border-red-500"}`}>
-					<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-				</div>
+				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
 				<div class="flex gap-4">
 					{#each positions as position}
 						<button
-							onclick={() => playVideo(position - 1)}
+							on:click={() => playVideo(position - 1)}
 							class={`rounded-md py-2 transition-all duration-200 ${
 								currentPosition == position ? "bg-orange-600 px-8" : "bg-cyan-500 px-4"
 							}`}

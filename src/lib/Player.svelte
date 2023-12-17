@@ -13,13 +13,12 @@
 	import VideoLayout from "./components/layouts/VideoLayout.svelte";
 	import type { VideoProps } from "./types";
 
-	let { player, isPlayerReady, videoProps } = $props<{
-		player: MediaPlayerElement;
-		isPlayerReady: boolean;
-		videoProps: VideoProps;
-	}>();
+	export let player: MediaPlayerElement;
+	export let isPlayerReady: boolean;
+	export let videoProps: VideoProps;
 
 	onMount(() => {
+		console.log("mounted");
 		/**
 		 * You can add these tracks using HTML as well.
 		 *
@@ -56,21 +55,23 @@
 
 	// We can listen for the `can-play` event to be notified when the player is ready.
 	function onCanPlay(event: MediaCanPlayEvent) {
+		console.log("rede");
 		isPlayerReady = true;
 		//setTime();
 		// ...
 	}
 
-	$effect(() => {
-		console.log("video changed:", videoProps.title);
+	$: {
+		console.log("video changed: getting ready", videoProps.title);
 		isPlayerReady = false;
-	});
+	}
 </script>
 
 <media-player
 	class="aspect-video w-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
-	title={videoProps.title}
-	src={videoProps.src}
+	title="tf"
+	src="https://www.youtube.com/watch?v=toKJP3luQbI"
+	load="eager"
 	crossorigin
 	playsinline
 	on:provider-change={onProviderChange}
@@ -80,7 +81,7 @@
 	<media-provider>
 		<media-poster
 			class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-			alt={videoProps.alt}
+			alt=""
 		/>
 	</media-provider>
 

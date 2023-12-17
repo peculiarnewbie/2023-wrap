@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --media-brand: 245 245 245;
-  --media-focus: 78 156 246;
+	--media-brand: 245 245 245;
+	--media-focus: 78 156 246;
 }
 
 /*
@@ -12,5 +12,5 @@
  * rendering with a framework like Nuxt.
  */
 *:not(:defined) {
-  opacity: 0;
+	opacity: 0;
 }

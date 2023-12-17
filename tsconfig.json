@@ -7,11 +7,9 @@
 		"module": "ESNext",
 		"resolveJsonModule": true,
 		"target": "ESNext",
-		"types": ["svelte", "vidstack/svelte"],
 		"useDefineForClassFields": true,
 		"verbatimModuleSyntax": true,
-		"moduleResolution": "Bundler"
-	},
-	"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.svelte"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+		"moduleResolution": "Bundler",
+		"types": ["svelte", "vidstack/svelte"]
+	}
 }
