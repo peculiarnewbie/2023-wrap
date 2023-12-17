@@ -5,6 +5,7 @@
 	import type { VideoProps } from "$lib/types";
 	import { albums } from "$lib/albums";
 	import { onDestroy, onMount } from "svelte";
+	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
 
 	let man = $state("yo");
 	let isPlayerReady = $state(false);
@@ -13,6 +14,7 @@
 	let currentVideoProps = $state(albums[0].videoProps);
 
 	let currentPosition = $state(1);
+	let currentVolume = $state(50);
 
 	const playVideo = async (index: number) => {
 		/*for (let i = 0; i < players.length; i++) {
@@ -28,6 +30,7 @@
 		player.currentTime = video.startTime;
 		
 		*/
+		player.volume = 0;
 		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;
 		currentVideoProps = albums[index].videoProps;
@@ -40,7 +43,7 @@
 		console.log("played");
 		//player.paused = false;
 		player.currentTime = currentVideoProps.startTime;
-		player.volume = 0.3;
+		player.volume = currentVolume / 100;
 		isStarted = true;
 	};
 
@@ -53,6 +56,10 @@
 			}
 		}
 	};
+
+	$effect(() => {
+		player.volume = currentVolume / 100;
+	});
 
 	onMount(() => {
 		document.addEventListener("scroll", checkPosition);
@@ -75,7 +82,7 @@
 	<div class="relative flex h-[600px] w-full justify-center">
 		<div class="fixed flex w-full max-w-5xl justify-center p-8">
 			{#if !isStarted}
-				<div class="fixed z-50 flex h-[720px] w-full items-center justify-center bg-black">
+				<div class="fixed z-50 flex h-[720px] w-full flex-col items-center justify-center bg-black">
 					{#if isPlayerReady}
 						<button
 							class={`rounded-md bg-blue-500 px-4 py-2 text-2xl ${isPlayerReady ? "" : "hidden"}`}
@@ -86,6 +93,8 @@
 					{:else}
 						<p>loading...</p>
 					{/if}
+					<p class="pt-8">volume: {currentVolume / 100}</p>
+					<VolumeSlider bind:currentVolume />
 				</div>
 			{/if}
 			<div class="flex h-[720px] w-full flex-col">
@@ -104,6 +113,8 @@
 						</button>
 					{/each}
 				</div>
+				<VolumeSlider bind:currentVolume />
+				<p>volume: {currentVolume / 100}</p>
 			</div>
 		</div>
 	</div>
