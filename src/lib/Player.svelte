@@ -17,6 +17,8 @@
 	export let isPlayerReady: boolean;
 	export let videoProps: VideoProps;
 
+	let currentSrc = "";
+
 	onMount(() => {
 		console.log("mounted");
 		/**
@@ -63,14 +65,17 @@
 
 	$: {
 		console.log("video changed: getting ready", videoProps.title);
-		isPlayerReady = false;
+		if (videoProps.src != currentSrc) {
+			currentSrc = videoProps.src;
+			isPlayerReady = false;
+		}
 	}
 </script>
 
 <media-player
 	class="aspect-video w-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
-	title="tf"
-	src="https://www.youtube.com/watch?v=toKJP3luQbI"
+	title={videoProps.title}
+	src={videoProps.src}
 	load="eager"
 	crossorigin
 	playsinline
@@ -81,7 +86,7 @@
 	<media-provider>
 		<media-poster
 			class="absolute inset-0 block h-full w-full rounded-md opacity-0 transition-opacity data-[visible]:opacity-100 [&>img]:h-full [&>img]:w-full [&>img]:object-cover"
-			alt=""
+			alt={videoProps.alt}
 		/>
 	</media-provider>
 

@@ -65,7 +65,7 @@
 <div
 	bind:this={group}
 	on:pointerdown={setDragging}
-	on:canplay={() => {
+	on:pointerenter={() => {
 		setGroupFocus(true);
 	}}
 	on:pointerleave={() => {

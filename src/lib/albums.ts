@@ -31,7 +31,7 @@ export let albums = [
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=OLeCIRC4taY",
-			startTime: 158,
+			startTime: 158.8,
 			alt: "insane production"
 		}
 	},

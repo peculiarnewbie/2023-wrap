@@ -2,7 +2,7 @@
 	import "../../app.css";
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
-	import Background from "$lib/mycomponents/Background.svelte";
+	import Background from "./Background.svelte";
 	import { albums } from "$lib/albums";
 	import { onDestroy, onMount } from "svelte";
 	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
@@ -34,7 +34,7 @@
 		isStarted = true;
 	};
 
-	const checkPosition = () => {
+	const checkPosition = (e: Event) => {
 		if (isPlayerReady) {
 			const scrollY = window.scrollY;
 			if (scrollY > currentPosition * 1000 || scrollY < (currentPosition - 1) * 1000) {
@@ -51,7 +51,7 @@
 	}
 
 	onMount(() => {
-		document.addEventListener("scroll", checkPosition);
+		console.log("mounted");
 	});
 	onDestroy(() => {
 		//document.removeEventListener("scroll", checkPosition);
@@ -63,19 +63,22 @@
 	}
 </script>
 
+<Background />
 <div class={`flex ${isStarted ? "h-[3500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
 	<h1>Welcome to SvelteKit</h1>
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 	</p>
 	<div class="relative flex h-[600px] w-full justify-center">
-		<div class="fixed flex w-full max-w-5xl justify-center p-8">
+		<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
 			{#if !isStarted}
 				<div class="fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black">
 					{#if isPlayerReady}
 						<button
 							class={`rounded-md bg-blue-500 px-4 py-2 text-2xl`}
 							on:click={() => {
+								document.addEventListener("scroll", checkPosition);
+
 								playVideo(0);
 							}}>Start</button
 						>
@@ -86,7 +89,7 @@
 					<VolumeSlider bind:currentVolume />
 				</div>
 			{/if}
-			<div class="flex h-[720px] w-full flex-col">
+			<div class="z-20 flex h-[720px] w-full flex-col">
 				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
 				<div class="flex gap-4">
 					{#each positions as position}
