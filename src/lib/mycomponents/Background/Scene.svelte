@@ -3,8 +3,14 @@
 	import { OrbitControls } from "@threlte/extras";
 	import { SheetObject } from "@threlte/theatre";
 	import MainSheet from "./MainSheet.svelte";
+	import { useTask } from "@threlte/core";
 
 	let fov = 40;
+
+	let rotation = 0;
+	useTask((delta) => {
+		rotation += delta;
+	});
 </script>
 
 <!-- 
@@ -17,6 +23,9 @@
 	></T.PerspectiveCamera>
 
  -->
+
+<T.DirectionalLight position={[0, 10, 10]} />
+
 <MainSheet name="Main Sheet">
 	<SheetObject key="Camera" let:Transform>
 		<Transform key="CameraTransforms">
@@ -33,11 +42,11 @@
 	</SheetObject>
 	<SheetObject key="Box" let:Transform let:Sync>
 		<Transform key="BoxesTransform">
-			<T.Mesh receiveShadow castShadow position.x={0.5} position.y={0.5}>
+			<T.Mesh receiveShadow castShadow rotation.y={rotation}>
 				<T.BoxGeometry args={[1, 1, 1]} />
-				<T.MeshBasicMaterial color="#b00d03">
+				<T.MeshStandardMaterial color="#b00d03">
 					<Sync color />
-				</T.MeshBasicMaterial>
+				</T.MeshStandardMaterial>
 			</T.Mesh>
 		</Transform>
 	</SheetObject>
