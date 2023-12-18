@@ -7,11 +7,28 @@
 	let fov = 40;
 </script>
 
-<!-- Box -->
+<!-- 
+	<T.PerspectiveCamera
+		makeDefault={true}
+		on:create={({ ref }) => {
+			ref.position.set(10, 10, 10);
+			ref.lookAt(0, 0, 0);
+		}}
+	></T.PerspectiveCamera>
+
+ -->
 <MainSheet name="Main Sheet">
 	<SheetObject key="Camera" let:Transform>
 		<Transform key="CameraTransforms">
-			<T.PerspectiveCamera {fov} makeDefault={true} let:ref={camera}></T.PerspectiveCamera>
+			<T.PerspectiveCamera
+				{fov}
+				makeDefault={true}
+				let:ref={camera}
+				on:create={({ ref }) => {
+					ref.position.set(3, 3, 3);
+					ref.lookAt(0, 0, 0);
+				}}
+			></T.PerspectiveCamera>
 		</Transform>
 	</SheetObject>
 	<SheetObject key="Box" let:Transform let:Sync>

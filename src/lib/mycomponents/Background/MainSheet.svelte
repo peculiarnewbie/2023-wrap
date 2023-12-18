@@ -30,6 +30,7 @@
     */
 	onMount(() => {
 		console.log(sheet);
+		sheet.sequence.play();
 	});
 </script>
 
