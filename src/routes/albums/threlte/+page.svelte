@@ -4,4 +4,4 @@
 	import Background from "$lib/mycomponents/Background/Background.svelte";
 </script>
 
-<Background />
+<Background studio={true} />

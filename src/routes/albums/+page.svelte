@@ -31,7 +31,6 @@
 		//player.paused = false;
 		player.currentTime = currentVideoProps.startTime;
 		player.volume = currentVolume / 100;
-		isStarted = true;
 	};
 
 	const checkPosition = (e: Event) => {
@@ -42,6 +41,12 @@
 				setTimeout(() => playVideo(Math.floor(scrollY / 1000)), 100);
 			}
 		}
+	};
+
+	const onStart = async () => {
+		document.addEventListener("scroll", checkPosition);
+		await playVideo(0);
+		isStarted = true;
 	};
 
 	$: {
@@ -63,7 +68,7 @@
 	}
 </script>
 
-<Background />
+<Background studio={false} on:start={onStart} />
 <div class={`flex ${isStarted ? "h-[3500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
 	<h1>Welcome to SvelteKit</h1>
 	<p>
@@ -74,13 +79,8 @@
 			{#if !isStarted}
 				<div class="fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black">
 					{#if isPlayerReady}
-						<button
-							class={`rounded-md bg-blue-500 px-4 py-2 text-2xl`}
-							on:click={() => {
-								document.addEventListener("scroll", checkPosition);
-
-								playVideo(0);
-							}}>Start</button
+						<button class={`rounded-md bg-blue-500 px-4 py-2 text-2xl`} on:click={onStart}
+							>Start</button
 						>
 					{:else}
 						<p>loading...</p>

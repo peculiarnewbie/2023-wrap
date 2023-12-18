@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { T } from "@threlte/core";
-	import { OrbitControls } from "@threlte/extras";
+	import { OrbitControls, interactivity } from "@threlte/extras";
 	import { SheetObject } from "@threlte/theatre";
 	import MainSheet from "./MainSheet.svelte";
 	import { useTask } from "@threlte/core";
+	import { spring } from "svelte/motion";
+	import StartButton from "./components/StartButton.svelte";
+	import Button from "./components/Button.svelte";
 
 	let fov = 40;
 
-	let rotation = 0;
-	useTask((delta) => {
-		rotation += delta;
-	});
+	const handleMessage = (e: CustomEvent<any>) => {
+		alert(e.detail.text);
+	};
 </script>
 
 <!-- 
@@ -34,20 +36,16 @@
 				makeDefault={true}
 				let:ref={camera}
 				on:create={({ ref }) => {
-					ref.position.set(3, 3, 3);
+					ref.position.set(0, 0, 0);
 					ref.lookAt(0, 0, 0);
 				}}
 			></T.PerspectiveCamera>
 		</Transform>
 	</SheetObject>
-	<SheetObject key="Box" let:Transform let:Sync>
-		<Transform key="BoxesTransform">
-			<T.Mesh receiveShadow castShadow rotation.y={rotation}>
-				<T.BoxGeometry args={[1, 1, 1]} />
-				<T.MeshStandardMaterial color="#b00d03">
-					<Sync color />
-				</T.MeshStandardMaterial>
-			</T.Mesh>
+	<SheetObject key="PlayButton" let:Transform>
+		<Transform key="PlayButtonTransform">
+			<Button />
 		</Transform>
 	</SheetObject>
+	<StartButton on:start />
 </MainSheet>

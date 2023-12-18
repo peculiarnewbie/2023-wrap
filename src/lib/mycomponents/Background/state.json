@@ -273,7 +273,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -2.5
+                    "value": 0
                   },
                   {
                     "id": "s0hjBownfm",
@@ -286,7 +286,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 3
+                    "value": 0.5
                   }
                 ]
               },
@@ -341,7 +341,7 @@
                   },
                   {
                     "id": "6GaVykaUx4",
-                    "position": 2,
+                    "position": 2.867,
                     "connectedRight": true,
                     "handles": [
                       0.5,
@@ -350,7 +350,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 0
+                    "value": 15
                   }
                 ]
               },
@@ -373,7 +373,7 @@
                   },
                   {
                     "id": "2hY5ZR4YSj",
-                    "position": 2,
+                    "position": 2.867,
                     "connectedRight": true,
                     "handles": [
                       0.5,
@@ -405,7 +405,7 @@
                   },
                   {
                     "id": "7B5UDz5GDU",
-                    "position": 2,
+                    "position": 2.867,
                     "connectedRight": true,
                     "handles": [
                       0.5,
@@ -414,7 +414,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 0
+                    "value": -15
                   }
                 ]
               },
@@ -544,7 +544,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -0.5
+                    "value": 0
                   },
                   {
                     "id": "PbGA3o142m",
@@ -557,7 +557,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -0.5
+                    "value": 0
                   }
                 ]
               },
@@ -819,6 +819,7 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "ZXGhh48zDdGrCGlk",
     "JCpjE85lXm5-1g4E",
     "QvLgqAaXnUb7oVac"
   ]
