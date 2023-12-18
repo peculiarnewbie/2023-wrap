@@ -77,6 +77,7 @@
 	title={videoProps.title}
 	src={videoProps.src}
 	load="eager"
+	autoplay={false}
 	crossorigin
 	playsinline
 	on:provider-change={onProviderChange}

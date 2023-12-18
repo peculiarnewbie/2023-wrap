@@ -17,6 +17,7 @@
 	let currentVolume = 50;
 
 	const playVideo = async (index: number) => {
+		console.log("played?");
 		player.volume = 0;
 		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;
@@ -45,8 +46,12 @@
 
 	const onStart = async () => {
 		document.addEventListener("scroll", checkPosition);
-		await playVideo(0);
 		isStarted = true;
+		await new Promise((resolve) => {
+			setTimeout(resolve, 1000);
+		});
+		console.log("play");
+		await playVideo(0);
 	};
 
 	$: {
@@ -76,19 +81,11 @@
 	</p>
 	<div class="relative flex h-[600px] w-full justify-center">
 		<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
-			{#if !isStarted}
-				<div class="fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black">
-					{#if isPlayerReady}
-						<button class={`rounded-md bg-blue-500 px-4 py-2 text-2xl`} on:click={onStart}
-							>Start</button
-						>
-					{:else}
-						<p>loading...</p>
-					{/if}
-					<p class="pt-8">volume: {currentVolume / 100}</p>
-					<VolumeSlider bind:currentVolume />
-				</div>
-			{/if}
+			<div
+				class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
+					isStarted ? "opacity-0" : "opacity-100"
+				} `}
+			/>
 			<div class="z-20 flex h-[720px] w-full flex-col">
 				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
 				<div class="flex gap-4">
