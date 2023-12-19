@@ -45,7 +45,7 @@
 			bind:this={$component}
 			scale={$scale}
 			on:pointerenter={() => {
-				scale.set(1.5);
+				scale.set(1.2);
 				triggerHover(true);
 			}}
 			on:pointerleave={() => {

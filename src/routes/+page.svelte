@@ -1,5 +1,3 @@
-<script lang="ts">
-	import "../app.css";
-</script>
+<h1 style="--color: white; --padding:20; --background-color: red">Hello, World!</h1>
 
-<div class="text-slate-200">What</div>
+<p style="--color: blue; --padding:10; --font-size: 32px">cool stuff, tokenami</p>
