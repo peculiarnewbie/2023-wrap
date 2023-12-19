@@ -1,25 +1,21 @@
 const { createConfig } = require("@tokenami/dev");
 
 module.exports = createConfig({
-	include: ["./src/**/*.{js,jsx,ts,tsx,svelte}"],
-	grid: "0.25rem",
-	responsive: {},
+	// ...
+	responsive: {
+		medium: "@media (min-width: 700px)",
+		large: "@media (min-width: 1024px)"
+	},
 	theme: {
-		alpha: {},
-		anim: {},
-		border: {},
-		color: {},
-		ease: {},
-		"font-size": {},
-		leading: {},
-		"line-style": {},
-		radii: {},
-		size: {},
-		shadow: {},
-		surface: {},
-		tracking: {},
-		transition: {},
-		weight: {},
-		z: {}
+		color: {
+			"slate-100": "#f1f5f9",
+			"slate-700": "#334155",
+			"sky-500": "#0ea5e9"
+		},
+		radii: {
+			rounded: "10px",
+			circle: "9999px",
+			none: "none"
+		}
 	}
 });

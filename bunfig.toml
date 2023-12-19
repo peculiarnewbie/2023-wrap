@@ -1,2 +1,4 @@
 
-@tokenami:registry=https://npm.pkg.github.com/:_authToken=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  
+
+[install.scopes]
+"@tokenami" ="https://npm.pkg.github.com/_authToken=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" 

@@ -1,5 +1,5 @@
 {
-	"include": [".tokenami/tokenami.d.ts"],
+	"include": [".tokenami/tokenami.d.ts", "src/**/*.svelte", "src/**/*.ts", "src/**/*.tsx"],
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"allowJs": true,
@@ -12,6 +12,7 @@
 		"verbatimModuleSyntax": true,
 		"moduleResolution": "Bundler",
 		"types": ["svelte", "vidstack/svelte"],
-		"plugins": [{ "name": "@tokenami/ts-plugin" }]
+		"plugins": [{ "name": "@tokenami/ts-plugin" }],
+		"jsx": "react-jsx"
 	}
 }

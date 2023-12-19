@@ -7,6 +7,9 @@
   --padding: ;
   --background-color: ;
   --font-size: ;
+  --height: ;
+  --display: ;
+  --flex-direction: ;
 }
 
 [style*="--background-color:"] {
@@ -17,8 +20,24 @@
   color: var(--color);
 }
 
+[style*="--display:"] {
+  display: var(--display);
+}
+
+[style*="--flex-direction:"] {
+  flex-direction: var(--flex-direction);
+}
+
 [style*="--font-size:"] {
   font-size: var(--font-size);
+}
+
+[style*="--height:"] {
+  height: calc(var(--grid) * var(--height));
+}
+
+[style*="--height:var"], [style*="--height: var"] {
+  height: var(--height);
 }
 
 [style*="--padding:"] {

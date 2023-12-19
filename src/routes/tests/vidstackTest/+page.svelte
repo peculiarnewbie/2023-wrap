@@ -1,5 +1,4 @@
 <script lang="ts">
-	import "../../../app.css";
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
 
