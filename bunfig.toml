@@ -1,4 +1,4 @@
 
 
 [install.scopes]
-"@tokenami" ="https://npm.pkg.github.com/_authToken=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" 
+"@tokenami" ="https://npm.pkg.github.com/_authToken=$TOKENAMI_TOKEN" 

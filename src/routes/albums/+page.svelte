@@ -80,7 +80,7 @@
 	style={`${
 		isStarted
 			? "--height: 3500px; --color: var(--color-slate-700)"
-			: "--height: 720px; --color: white"
+			: "--height: 720px; --color: var(--color-bolto)"
 	}; --display: flex; --flex-direction: column; --background-color: black;`}
 >
 	<h1>Welcome to SvelteKit</h1>

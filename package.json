@@ -10,8 +10,8 @@
     "@threlte/core": "^7.0.12",
     "@threlte/extras": "^8.0.10",
     "@threlte/theatre": "^2.1.5",
-    "@tokenami/dev": "^0.0.2",
-    "@tokenami/ts-plugin": "^0.0.2",
+    "@tokenami/dev": "^0.0.3",
+    "@tokenami/ts-plugin": "^0.0.3",
     "@types/three": "^0.159.0",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
@@ -35,6 +35,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@tokenami/css": "^0.0.3",
     "media-icons": "^0.10.0",
     "tailwindcss-animate": "^1.0.7",
     "vidstack": "next"

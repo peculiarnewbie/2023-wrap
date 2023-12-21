@@ -1,21 +1,19 @@
-const { createConfig } = require("@tokenami/dev");
+import { createConfig, defaultConfig } from "@tokenami/dev";
 
-module.exports = createConfig({
-	// ...
-	responsive: {
-		medium: "@media (min-width: 700px)",
-		large: "@media (min-width: 1024px)"
-	},
+export default createConfig({
+	include: ["./src/**/*.{ts,tsx,svelte}"],
+	responsive: {},
 	theme: {
 		color: {
-			"slate-100": "#f1f5f9",
-			"slate-700": "#334155",
-			"sky-500": "#0ea5e9"
+			"red-100": "#222333",
+			bolto: "#77aa22",
+			boltoh: "#ffff00"
 		},
-		radii: {
-			rounded: "10px",
-			circle: "9999px",
-			none: "none"
-		}
+		keyframes: {},
+		selectors: {},
+		aliases: {}
+	},
+	properties: {
+		...defaultConfig.properties
 	}
 });
