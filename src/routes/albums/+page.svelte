@@ -46,12 +46,9 @@
 
 	const onStart = async () => {
 		document.addEventListener("scroll", checkPosition);
-		await new Promise((resolve) => {
-			setTimeout(resolve, 500);
-		});
 		isStarted = true;
 		await new Promise((resolve) => {
-			setTimeout(resolve, 500);
+			setTimeout(resolve, 1000);
 		});
 		console.log("play");
 		await playVideo(0);

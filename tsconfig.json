@@ -1,5 +1,4 @@
 {
-	"include": [".tokenami/tokenami.d.ts"],
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"allowJs": true,
@@ -11,7 +10,6 @@
 		"useDefineForClassFields": true,
 		"verbatimModuleSyntax": true,
 		"moduleResolution": "Bundler",
-		"types": ["svelte", "vidstack/svelte"],
-		"plugins": [{ "name": "@tokenami/ts-plugin" }]
+		"types": ["svelte", "vidstack/svelte"]
 	}
 }
