@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "../../../app.css";
 	import { Canvas, T } from "@threlte/core";
 </script>
 

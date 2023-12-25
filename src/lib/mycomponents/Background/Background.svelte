@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "../../../app.css";
 	import { Canvas } from "@threlte/core";
 	import { Theatre, Project, Studio, Sheet, Sequence } from "@threlte/theatre";
 	import { createEventDispatcher } from "svelte";
@@ -33,10 +34,7 @@
 
 <div class={` ${isStarted ? "pointer-events-none" : ""}`}>
 	<Theatre config={{ state: state }} studio={{ enabled: studio }}>
-		<div
-			class={` fixed z-40 h-screen w-screen`}
-			style="--height: 300; --padding: 20; --display: fixed: --z-index: 40"
-		>
+		<div class={` fixed z-40 h-screen w-screen`}>
 			<Canvas bind:this={canvas}>
 				<Scene on:start={handleStart} />
 			</Canvas>

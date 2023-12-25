@@ -1,4 +1,5 @@
 <script lang="ts">
+	import "../../app.css";
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
 	import Background from "$lib/mycomponents/Background/Background.svelte";
@@ -76,13 +77,7 @@
 </script>
 
 <Background studio={false} on:start={onStart} />
-<div
-	style={`${
-		isStarted
-			? "--height: 3500px; --color: var(--color-slate-700)"
-			: "--height: 720px; --color: white"
-	}; --display: flex; --flex-direction: column; --background-color: black;`}
->
+<div class={`flex ${isStarted ? "h-[3500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
 	<h1>Welcome to SvelteKit</h1>
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
@@ -95,10 +90,7 @@
 				} `}
 			/>
 			<div class="z-20 flex h-[720px] w-full flex-col">
-				<!--
-					<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-
-				-->
+				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
 				<div class="flex gap-4">
 					{#each positions as position}
 						<button
