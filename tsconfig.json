@@ -12,6 +12,7 @@
 		"verbatimModuleSyntax": true,
 		"moduleResolution": "Bundler",
 		"types": ["svelte", "vidstack/svelte"],
-		"plugins": [{ "name": "@tokenami/ts-plugin" }]
+		"plugins": [{ "name": "@tokenami/ts-plugin" }],
+		"jsx": "react-jsx"
 	}
 }

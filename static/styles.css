@@ -1,17 +1,15 @@
 :root {
   --grid: .25rem;
-  --color-red-100: #222333;
-  --color-bolto: #772122;
 }
 
 * {
-  --height: ;
   --color: ;
+  --padding: ;
+  --background-color: ;
+  --font-size: ;
+  --height: ;
   --display: ;
   --flex-direction: ;
-  --background-color: ;
-  --padding: ;
-  --z-index: ;
 }
 
 [style*="--background-color:"] {
@@ -30,6 +28,10 @@
   flex-direction: var(--flex-direction);
 }
 
+[style*="--font-size:"] {
+  font-size: var(--font-size);
+}
+
 [style*="--height:"] {
   height: calc(var(--grid) * var(--height));
 }
@@ -44,8 +46,4 @@
 
 [style*="--padding:var"], [style*="--padding: var"] {
   padding: var(--padding);
-}
-
-[style*="--z-index:"] {
-  z-index: var(--z-index);
 }
