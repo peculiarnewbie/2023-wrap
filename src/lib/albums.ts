@@ -1,4 +1,12 @@
-export let albums = [
+import type { VideoProps } from "./types";
+
+export let albums: {
+	pos: number;
+	artist: string;
+	title: string;
+	albumArt: string;
+	videoProps: VideoProps;
+}[] = [
 	{
 		pos: 1,
 		artist: "Paramore",
@@ -33,6 +41,18 @@ export let albums = [
 			src: "https://www.youtube.com/watch?v=OLeCIRC4taY",
 			startTime: 158.8,
 			alt: "insane production"
+		}
+	},
+	{
+		pos: 5,
+		artist: "boygenius",
+		title: "the album",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=bIX_ouNJsTs",
+			startTime: 181.5,
+			alt: "feels"
 		}
 	},
 	{

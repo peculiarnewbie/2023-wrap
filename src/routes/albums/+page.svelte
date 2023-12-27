@@ -2,10 +2,13 @@
 	import "../../app.css";
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
-	import Background from "$lib/mycomponents/Background/Background.svelte";
 	import { albums } from "$lib/albums";
 	import { onDestroy, onMount } from "svelte";
 	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
+	import TvCanvas from "$lib/mycomponents/3D/TV Background/TVCanvas.svelte";
+	import ForegroundCanvas from "$lib/mycomponents/3D/TV Foreground/ForegroundCanvas.svelte";
+	import PlayButtonCanvas from "$lib/mycomponents/3D/PlayButton/PlayButtonCanvas.svelte";
+	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
 
 	let man = "yo";
 	let isPlayerReady = false;
@@ -73,8 +76,9 @@
 	}
 </script>
 
-<Background studio={false} on:start={onStart} />
-<div class={`flex ${isStarted ? "h-[3500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
+<PlayButtonCanvas studio={false} on:start={onStart} />
+<button on:click={() => (isStarted = true)}> start </button>
+<div class={`flex ${isStarted ? "h-[9500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
 	<h1>Welcome to SvelteKit</h1>
 	<p>
 		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
@@ -86,24 +90,50 @@
 					isStarted ? "opacity-0" : "opacity-100"
 				} `}
 			/>
-			<div class="z-20 flex h-[720px] w-full flex-col">
+			<VideoMask>
 				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-				<div class="flex gap-4">
-					{#each positions as position}
-						<button
-							on:click={() => playVideo(position - 1)}
-							class={`rounded-md py-2 transition-all duration-200 ${
-								currentPosition == position ? "bg-orange-600 px-8" : "bg-cyan-500 px-4"
-							}`}
-						>
-							{position}
-						</button>
-					{/each}
-				</div>
-				<VolumeSlider bind:currentVolume />
-				<p>volume: {currentVolume / 100}</p>
-			</div>
+			</VideoMask>
+			<!--
+					<svg
+					class=" fixed"
+					id="video-mask"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="-20 -10 200 120"
+					preserveAspectRatio="xMidYMid slice"
+					>
+					<mask id="mask" x="0" y="0" width="100%" height="100%">
+							<rect id="maskrect" x="0" y="0" width="100%" height="100%" fill="white" />
+							<rect x="0" y="0" width="150" height="100" rx="20" />
+						</mask>
+						<rect x="0" y="0" width="100%" height="160" />
+					</svg>
+
+				-->
 		</div>
+	</div>
+	<div class="flex gap-4">
+		{#each positions as position}
+			<button
+				on:click={() => playVideo(position - 1)}
+				class={`rounded-md py-2 transition-all duration-200 ${
+					currentPosition == position ? "bg-orange-600 px-8" : "bg-cyan-500 px-4"
+				}`}
+			>
+				{position}
+			</button>
+		{/each}
+	</div>
+	<VolumeSlider bind:currentVolume />
+	<p>volume: {currentVolume / 100}</p>
+	<div class=" pointer-events-none fixed z-10 h-[720px] w-[1280px]">
+		<TvCanvas />
+	</div>
+
+	<div class=" pointer-events-none fixed z-40 h-[720px] w-[1280px]">
+		<ForegroundCanvas />
 	</div>
 	<p>try scrolling down</p>
 </div>
+
+<style>
+</style>

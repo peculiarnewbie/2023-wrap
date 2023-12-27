@@ -3,7 +3,7 @@
 	import type { ISheet } from "@theatre/core";
 	import { Sheet, SheetObject } from "@threlte/theatre";
 	import { onMount } from "svelte";
-	import StartButton from "./components/StartButton.svelte";
+	import StartButton from "./StartButton.svelte";
 	import { AmbientLight, DirectionalLight } from "three";
 
 	export let name: string;

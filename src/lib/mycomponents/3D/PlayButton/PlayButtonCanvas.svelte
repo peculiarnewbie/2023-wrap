@@ -1,5 +1,5 @@
 <script lang="ts">
-	import "../../../app.css";
+	import "../../../../app.css";
 	import { Canvas } from "@threlte/core";
 	import { Theatre, Project, Studio, Sheet, Sequence } from "@threlte/theatre";
 	import { createEventDispatcher } from "svelte";
