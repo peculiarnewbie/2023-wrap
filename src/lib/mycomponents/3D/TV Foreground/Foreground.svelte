@@ -7,6 +7,7 @@ Command: npx @threlte/gltf@2.0.1 ./TV Foreground.glb --transform
 	import { Group } from "three";
 	import { T, forwardEventHandlers } from "@threlte/core";
 	import { useGltf } from "@threlte/extras";
+	import { tvPosition, tvRotation, tvScale } from "$lib/stores";
 
 	export const ref = new Group();
 
@@ -22,7 +23,9 @@ Command: npx @threlte/gltf@2.0.1 ./TV Foreground.glb --transform
 		<T.Mesh
 			geometry={gltf.nodes.Cube002.geometry}
 			material={gltf.nodes.Cube002.material}
-			position={[0, 0, 0]}
+			position={$tvPosition}
+			rotation={$tvRotation}
+			scale={$tvScale}
 		/>
 	{:catch error}
 		<slot name="error" {error} />

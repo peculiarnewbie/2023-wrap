@@ -6,17 +6,6 @@
 	const videoSheetObject = createSheetObjectAction();
 
 	let scale = 1;
-
-	const scaleTransformer = createTransformer({
-		transform(value) {
-			return types.number(value, {
-				range: [0, 10]
-			});
-		},
-		apply(target, path, value) {
-			target[path] = value;
-		}
-	});
 </script>
 
 <div
@@ -26,21 +15,21 @@
 			translate: { x: 0, y: 0, z: 0 },
 			h: 500,
 			w: 650,
-			rotation: { x: 0.2, y: 1, z: 0, r: -16 },
+			rotation: { x: 0, y: 1, z: 0 },
 			multiplier: 1
 		},
 		callback: (node, { translate, h, w, rotation, multiplier }) => {
 			node.style.height = `${h * scale}px`;
 			node.style.width = `${w * scale}px`;
-			node.style.transform = `perspective(2000px) rotate3d(${rotation.x}, ${rotation.y}, ${
-				rotation.z
-			}, ${rotation.r}deg) translate3d(${translate.x * scale * scale}px, ${
-				translate.y * scale * scale
-			}px, 0)`;
+			node.style.transform = `perspective(2000px) 
+			rotateX(${rotation.x}deg)
+			rotateY(${rotation.y}deg) 
+			rotateZ(${rotation.z}deg) 
+			translate3d(${translate.x * scale * scale}px, ${translate.y * scale * scale}px, 0)`;
 			scale = 1 + multiplier * 0.1;
 		}
 	}}
-	class=" h-[600px] w-[750px] overflow-hidden"
+	class=" h-[600px] w-[750px] origin-center overflow-hidden"
 	style={`border-radius: 4rem;`}
 >
 	<div
@@ -56,6 +45,7 @@
 				node.style.transform = `translate3d(${translate.x * scale}px, ${
 					translate.y * scale * scale
 				}px, 0)`;
+				node.style.rotate;
 			}
 		}}
 		class=" z-20 flex h-[600px] w-[1080px] flex-col"
