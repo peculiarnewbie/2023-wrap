@@ -9,6 +9,7 @@
 	import ForegroundCanvas from "$lib/mycomponents/3D/TV Foreground/ForegroundCanvas.svelte";
 	import PlayButtonCanvas from "$lib/mycomponents/3D/PlayButton/PlayButtonCanvas.svelte";
 	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
+	import { Sheet, Theatre } from "@threlte/theatre";
 
 	let man = "yo";
 	let isPlayerReady = false;
@@ -76,64 +77,69 @@
 	}
 </script>
 
-<PlayButtonCanvas studio={false} on:start={onStart} />
-<button on:click={() => (isStarted = true)}> start </button>
-<div class={`flex ${isStarted ? "h-[9500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
-	<h1>Welcome to SvelteKit</h1>
-	<p>
-		Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-	</p>
-	<div class="relative flex h-[600px] w-full justify-center">
-		<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
-			<div
-				class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
-					isStarted ? "opacity-0" : "opacity-100"
-				} `}
-			/>
-			<VideoMask>
-				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-			</VideoMask>
-			<!--
+<!--
+	<PlayButtonCanvas studio={false} on:start={onStart} />
+
+-->
+<Theatre studio={{ enabled: true }}>
+	<button on:click={() => (isStarted = true)}> start </button>
+	<div class={`flex ${isStarted ? "h-[9500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
+		<h1>Welcome to SvelteKit</h1>
+		<p>
+			Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
+		</p>
+		<div class="relative flex h-[600px] w-full justify-center">
+			<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
+				<div
+					class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
+						isStarted ? "opacity-0" : "opacity-100"
+					} `}
+				/>
+				<VideoMask>
+					<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
+				</VideoMask>
+				<!--
 					<svg
 					class=" fixed"
 					id="video-mask"
 					xmlns="http://www.w3.org/2000/svg"
-					viewBox="-20 -10 200 120"
-					preserveAspectRatio="xMidYMid slice"
-					>
-					<mask id="mask" x="0" y="0" width="100%" height="100%">
-							<rect id="maskrect" x="0" y="0" width="100%" height="100%" fill="white" />
-							<rect x="0" y="0" width="150" height="100" rx="20" />
-						</mask>
-						<rect x="0" y="0" width="100%" height="160" />
-					</svg>
-
-				-->
+				viewBox="-20 -10 200 120"
+				preserveAspectRatio="xMidYMid slice"
+				>
+				<mask id="mask" x="0" y="0" width="100%" height="100%">
+					<rect id="maskrect" x="0" y="0" width="100%" height="100%" fill="white" />
+					<rect x="0" y="0" width="150" height="100" rx="20" />
+				</mask>
+				<rect x="0" y="0" width="100%" height="160" />
+			</svg>
+			
+		-->
+			</div>
 		</div>
-	</div>
-	<div class="flex gap-4">
-		{#each positions as position}
-			<button
-				on:click={() => playVideo(position - 1)}
-				class={`rounded-md py-2 transition-all duration-200 ${
-					currentPosition == position ? "bg-orange-600 px-8" : "bg-cyan-500 px-4"
-				}`}
-			>
-				{position}
-			</button>
-		{/each}
-	</div>
-	<VolumeSlider bind:currentVolume />
-	<p>volume: {currentVolume / 100}</p>
-	<div class=" pointer-events-none fixed z-10 h-[720px] w-[1280px]">
-		<TvCanvas />
-	</div>
+		<div class="flex gap-4">
+			{#each positions as position}
+				<button
+					on:click={() => playVideo(position - 1)}
+					class={`rounded-md py-2 transition-all duration-200 ${
+						currentPosition == position ? "bg-orange-600 px-8" : "bg-cyan-500 px-4"
+					}`}
+				>
+					{position}
+				</button>
+			{/each}
+		</div>
+		<VolumeSlider bind:currentVolume />
+		<p>volume: {currentVolume / 100}</p>
+		<div class=" pointer-events-none fixed z-10 h-[720px] w-[1280px]">
+			<TvCanvas />
+		</div>
 
-	<div class=" pointer-events-none fixed z-40 h-[720px] w-[1280px]">
-		<ForegroundCanvas />
+		<div class=" pointer-events-none fixed z-40 h-[720px] w-[1280px]">
+			<ForegroundCanvas />
+		</div>
+		<p>try scrolling down</p>
 	</div>
-	<p>try scrolling down</p>
-</div>
+</Theatre>
 
 <style>
 </style>

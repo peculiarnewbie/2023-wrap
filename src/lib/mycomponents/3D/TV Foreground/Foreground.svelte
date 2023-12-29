@@ -22,7 +22,7 @@ Command: npx @threlte/gltf@2.0.1 ./TV Foreground.glb --transform
 		<T.Mesh
 			geometry={gltf.nodes.Cube002.geometry}
 			material={gltf.nodes.Cube002.material}
-			position={[0, 1.46, 0]}
+			position={[0, 0, 0]}
 		/>
 	{:catch error}
 		<slot name="error" {error} />

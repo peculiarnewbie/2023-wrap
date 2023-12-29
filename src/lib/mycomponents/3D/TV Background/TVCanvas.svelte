@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Theatre } from "@threlte/theatre";
 	import { Canvas } from "@threlte/core";
 	import TvScene from "./TVScene.svelte";
 </script>

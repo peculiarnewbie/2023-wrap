@@ -11,8 +11,8 @@
 	makeDefault={true}
 	let:ref={camera}
 	on:create={({ ref }) => {
-		ref.position.set(1, 1, 4);
-		ref.lookAt(-0.1, 1, 0);
+		ref.position.set(0, -1, 5);
+		ref.lookAt(0, 0, 0);
 	}}
 ></T.PerspectiveCamera>
 

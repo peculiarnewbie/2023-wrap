@@ -7,6 +7,7 @@ Command: npx @threlte/gltf@2.0.1 ./TV.glb --transform
 	import { Group } from "three";
 	import { T, forwardEventHandlers } from "@threlte/core";
 	import { useGltf } from "@threlte/extras";
+	import { SheetObject } from "@threlte/theatre";
 
 	export const ref = new Group();
 
@@ -15,18 +16,20 @@ Command: npx @threlte/gltf@2.0.1 ./TV.glb --transform
 	const component = forwardEventHandlers();
 </script>
 
-<T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
-	{#await gltf}
-		<slot name="fallback" />
-	{:then gltf}
-		<T.Mesh
-			geometry={gltf.nodes.Cube.geometry}
-			material={gltf.nodes.Cube.material}
-			position={[0, 1.46, 0]}
-		/>
-	{:catch error}
-		<slot name="error" {error} />
-	{/await}
+<SheetObject key="TV">
+	<T is={ref} dispose={false} {...$$restProps} bind:this={$component}>
+		{#await gltf}
+			<slot name="fallback" />
+		{:then gltf}
+			<T.Mesh
+				geometry={gltf.nodes.Cube.geometry}
+				material={gltf.nodes.Cube.material}
+				position={[0, 0, 0]}
+			/>
+		{:catch error}
+			<slot name="error" {error} />
+		{/await}
 
-	<slot {ref} />
-</T>
+		<slot {ref} />
+	</T>
+</SheetObject>
