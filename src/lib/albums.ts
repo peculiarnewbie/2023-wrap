@@ -33,6 +33,18 @@ export let albums: {
 	},
 	{
 		pos: 3,
+		artist: "Jeff Rosenstock",
+		title: "HELLMODE",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=y8vJxLjnhBw",
+			startTime: 164,
+			alt: "definition of catharsis"
+		}
+	},
+	{
+		pos: 4,
 		artist: "Sufjan Stevens",
 		title: "Javelin",
 		albumArt: "",
@@ -56,7 +68,103 @@ export let albums: {
 		}
 	},
 	{
+		pos: 6,
+		artist: "Carly Rae Jepsen",
+		title: "The Loveliest Time",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=e9SchUO-Qr8",
+			startTime: 92,
+			alt: "still the pop queen"
+		}
+	},
+	{
+		pos: 7,
+		artist: "grouptherapy.",
+		title: "i was mature for my age, but i was still a child",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=s9AMFQbxj1Y",
+			startTime: 132,
+			alt: "variety with identity"
+		}
+	},
+	{
 		pos: 8,
+		artist: "KNOWER",
+		title: "KNOWER FOREVER",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=Ois3gfcwKSA",
+			startTime: 87,
+			alt: "more like grooves forever amirite"
+		}
+	},
+	{
+		pos: 9,
+		artist: "underscores",
+		title: "Wallsocket",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=fG7foCO6wfc",
+			startTime: 118.3,
+			alt: "hyper zoomer caliber"
+		}
+	},
+	{
+		pos: 10,
+		artist: "Caroline Polachek",
+		title: "Desire, I Want To Turn Into You",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=hxgcz_6GKX0",
+			startTime: 119.5,
+			alt: "how can pop be so distinct"
+		}
+	},
+	{
+		pos: 11,
+		artist: "Parannoul",
+		title: "After the Magic",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=nwo48c6aK6I",
+			startTime: 131.5,
+			alt: "the live album is also magic"
+		}
+	},
+	{
+		pos: 12,
+		artist: "Olivia Rodrigo",
+		title: "GUTS",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=ZsJ-BHohXRI",
+			startTime: 85.5,
+			alt: "yea okay it wasn't a fluke"
+		}
+	},
+	{
+		pos: 13,
+		artist: "Lana Del Rey",
+		title: "Did you know that there's a tunnel under Ocean Blvd",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=C2e0H6MUWyU",
+			startTime: 296,
+			alt: "A&W deserves song of the year at the grammys"
+		}
+	},
+	{
+		pos: 14,
 		artist: "Mitski",
 		title: "My Love Mine All Mine",
 		albumArt: "",
@@ -64,7 +172,79 @@ export let albums: {
 			title: "Mitski - My Love Mine All Mine",
 			src: "https://www.youtube.com/watch?v=vx4kLgnFexo",
 			startTime: 66,
-			alt: "very chill and sad"
+			alt: "so funny that this is the one that got her tik tok trending"
+		}
+	},
+	{
+		pos: 15,
+		artist: "yeule",
+		title: "Softscars",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=U112Stii6uE",
+			startTime: 119,
+			alt: "they just don't miss do they"
+		}
+	},
+	{
+		pos: 16,
+		artist: "feeble little horse",
+		title: "Girl with Fish",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=K8czw_eChTE",
+			startTime: 56.5,
+			alt: "the only one brave enough to ask 'Do I make you cringe?'"
+		}
+	},
+	{
+		pos: 17,
+		artist: "Sampha",
+		title: "Lahai",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=1YPtbploIyU",
+			startTime: 79.5,
+			alt: "the word 'lush'"
+		}
+	},
+	{
+		pos: 18,
+		artist: "Tinashe",
+		title: "BB_ANG3L",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=RVLGp0Ph9lA",
+			startTime: 60,
+			alt: "okay but why is it only 20 minutes tho"
+		}
+	},
+	{
+		pos: 19,
+		artist: "Balming Tiger",
+		title: "January Never Dies",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=zYNvj7_44Gs",
+			startTime: 108.5,
+			alt: "RM should just leave BTS and join these guys"
+		}
+	},
+	{
+		pos: 20,
+		artist: "PinkPantheress",
+		title: "Heaven Knows",
+		albumArt: "",
+		videoProps: {
+			title: "",
+			src: "https://www.youtube.com/watch?v=fd6tyv8GowY",
+			startTime: 154.7,
+			alt: "hard to believe that this is a debut"
 		}
 	}
 ];

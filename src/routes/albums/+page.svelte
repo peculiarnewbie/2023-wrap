@@ -88,7 +88,7 @@
 		<p>
 			Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 		</p>
-		<div class="relative flex h-[600px] w-full justify-center">
+		<div class="relative flex h-[900px] w-full justify-center">
 			<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
 				<div
 					class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
@@ -116,15 +116,17 @@
 		-->
 			</div>
 		</div>
-		<div class="flex gap-4">
+		<div class=" top-[400px] flex gap-4">
 			{#each positions as position}
 				<button
-					on:click={() => playVideo(position - 1)}
+					on:click={() => playVideo(positions.length - position)}
 					class={`rounded-md py-2 transition-all duration-200 ${
-						currentPosition == position ? "bg-orange-600 px-8" : "bg-cyan-500 px-4"
+						currentPosition == positions.length - position + 1
+							? "bg-orange-600 px-8"
+							: "bg-cyan-500 px-4"
 					}`}
 				>
-					{position}
+					{positions.length + 1 - position}
 				</button>
 			{/each}
 		</div>
