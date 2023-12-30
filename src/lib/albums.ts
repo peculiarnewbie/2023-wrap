@@ -75,7 +75,7 @@ export let albums: {
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=e9SchUO-Qr8",
-			startTime: 92,
+			startTime: 102.8,
 			alt: "still the pop queen"
 		}
 	},
@@ -147,7 +147,7 @@ export let albums: {
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=ZsJ-BHohXRI",
-			startTime: 85.5,
+			startTime: 85.6,
 			alt: "yea okay it wasn't a fluke"
 		}
 	},
@@ -231,7 +231,7 @@ export let albums: {
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=zYNvj7_44Gs",
-			startTime: 108.5,
+			startTime: 114.5,
 			alt: "RM should just leave BTS and join these guys"
 		}
 	},

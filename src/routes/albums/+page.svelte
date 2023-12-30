@@ -88,7 +88,7 @@
 		<p>
 			Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 		</p>
-		<div class="relative flex h-[900px] w-full justify-center">
+		<div class="relative flex h-[1000px] w-full justify-center">
 			<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
 				<div
 					class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${

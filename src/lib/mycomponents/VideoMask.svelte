@@ -12,7 +12,7 @@
 	use:wrapperSheetObject={{
 		key: "Video Wrapper",
 		props: {
-			translate: { x: 0, y: 0, z: 0 },
+			translate: { x: 0, y: 0, z: -400 },
 			h: 500,
 			w: 650,
 			rotation: { x: 0, y: 1, z: 0 },
@@ -21,16 +21,17 @@
 		callback: (node, { translate, h, w, rotation, multiplier }) => {
 			node.style.height = `${h * scale}px`;
 			node.style.width = `${w * scale}px`;
-			node.style.transform = `perspective(2000px) 
+			node.style.borderRadius = `${4 * scale}rem`;
+			node.style.transformOrigin = `${(h * scale) / 2}px ${(w * scale) / 2}px ${-400 * scale}px`;
+			node.style.transform = `perspective(2000px)
+			translate3d(${translate.x * scale}px, ${translate.y * scale}px, ${translate.z * scale * scale}px)
 			rotateX(${rotation.x}deg)
 			rotateY(${rotation.y}deg) 
-			rotateZ(${rotation.z}deg) 
-			translate3d(${translate.x * scale * scale}px, ${translate.y * scale * scale}px, 0)`;
+			rotateZ(${rotation.z}deg) `;
 			scale = 1 + multiplier * 0.1;
 		}
 	}}
-	class=" h-[600px] w-[750px] origin-center overflow-hidden"
-	style={`border-radius: 4rem;`}
+	class=" origin-center overflow-hidden"
 >
 	<div
 		use:videoSheetObject={{

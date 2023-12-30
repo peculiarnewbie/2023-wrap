@@ -22,9 +22,10 @@
 	class="absolute inset-0 z-10 flex h-full w-full flex-col bg-gradient-to-t from-black/10 to-transparent opacity-0 transition-opacity media-controls:opacity-100"
 >
 	<div class="flex-1" />
-	<media-controls-group class="flex w-full items-center px-2">
+	<media-controls-group class="flex w-full items-center px-[25%]">
 		<TimeSlider {thumbnails} />
 	</media-controls-group>
+	<div class=" basis-4" />
 	<!--
 		<media-controls-group class="-mt-0.5 flex w-full items-center px-2 pb-2">
 			<PlayButton tooltipPlacement="top start" />
