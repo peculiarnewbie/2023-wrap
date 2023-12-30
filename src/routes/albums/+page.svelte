@@ -11,6 +11,8 @@
 	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
 	import { Sheet, Theatre } from "@threlte/theatre";
 
+	import tvState from "$lib/states/tvstate.json";
+
 	let man = "yo";
 	let isPlayerReady = false;
 	let isStarted = false;
@@ -81,7 +83,7 @@
 	<PlayButtonCanvas studio={false} on:start={onStart} />
 
 -->
-<Theatre studio={{ enabled: true }}>
+<Theatre config={{ state: tvState }} studio={{ enabled: false }}>
 	<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
 		start
 	</button>

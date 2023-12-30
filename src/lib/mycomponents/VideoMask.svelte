@@ -11,7 +11,7 @@
 	let videoW = 484;
 </script>
 
-<div class="fixed z-20 h-screen w-screen">
+<div class=" pointer-events-none fixed z-20 h-screen w-screen">
 	<div class=" relative flex h-full w-full justify-center">
 		<div
 			use:wrapperSheetObject={{
