@@ -25,7 +25,7 @@
             "h": 381,
             "w": 606,
             "rotation": {
-              "x": 7,
+              "x": 16,
               "y": 0,
               "r": 18,
               "z": 0
@@ -39,10 +39,10 @@
           "Video Transform": {
             "size": {
               "h": 371,
-              "w": 757
+              "w": 787
             },
             "translate": {
-              "y": -8
+              "y": 0
             }
           },
           "TV": {
@@ -50,6 +50,16 @@
               "x": 0,
               "z": 0,
               "y": 0
+            },
+            "position": {
+              "z": 0,
+              "x": 0,
+              "y": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             }
           }
         }
@@ -341,7 +351,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 295
+                    "value": 364
                   }
                 ]
               },
@@ -360,7 +370,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -400
+                    "value": -151
                   }
                 ]
               }
@@ -391,7 +401,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -134
+                    "value": 0
                   },
                   {
                     "id": "mdk1ZRxUJO",
@@ -404,7 +414,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": -610
+                    "value": -201
                   },
                   {
                     "id": "SLZXmxJMhz",
@@ -3458,6 +3468,8 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "9OP66GMgLBVmJA6c",
+    "LVhMsehYmmJDvv64",
     "wuNsXKccMbuTDdRa",
     "1Q0wn_GRBkl6eB4n",
     "sN2FLDUmzW2rJaa_",

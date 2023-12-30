@@ -73,7 +73,7 @@
 </script>
 
 <media-player
-	class="aspect-video w-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
+	class="aspect-video h-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
 	title={videoProps.title}
 	src={videoProps.src}
 	load="eager"

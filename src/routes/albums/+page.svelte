@@ -82,22 +82,25 @@
 
 -->
 <Theatre studio={{ enabled: true }}>
-	<button on:click={() => (isStarted = true)}> start </button>
-	<div class={`flex ${isStarted ? "h-[9500px]" : "h-[720px]"} flex-col bg-black text-slate-200`}>
+	<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
+		start
+	</button>
+	<div
+		class={`relative flex ${
+			isStarted ? "h-[9500px]" : "h-[720px]"
+		} flex-col bg-black text-slate-200`}
+	>
 		<h1>Welcome to SvelteKit</h1>
 		<p>
 			Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
 		</p>
-		<div class="relative flex h-[1000px] w-full justify-center">
-			<div class="fixed z-30 flex w-full max-w-5xl justify-center p-8">
+		<div class="flex h-[1000px] w-full justify-center">
+			<div class="fixed z-30 flex w-full justify-center p-8">
 				<div
 					class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
 						isStarted ? "opacity-0" : "opacity-100"
 					} `}
 				/>
-				<VideoMask>
-					<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-				</VideoMask>
 				<!--
 					<svg
 					class=" fixed"
@@ -116,6 +119,9 @@
 		-->
 			</div>
 		</div>
+		<VideoMask>
+			<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
+		</VideoMask>
 		<div class=" top-[400px] flex gap-4">
 			{#each positions as position}
 				<button
