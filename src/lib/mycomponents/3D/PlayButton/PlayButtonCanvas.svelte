@@ -34,9 +34,9 @@
 
 <div class={` ${isStarted ? "pointer-events-none" : ""}`}>
 	<Theatre config={{ state: state }} studio={{ enabled: studio }}>
-		<div class={` fixed z-40 h-screen w-screen`}>
+		<div class={` fixed z-50 h-screen w-screen`}>
 			<Canvas bind:this={canvas}>
-				<Scene on:start={handleStart} />
+				<Scene on:start={handleStart} on:destroy />
 			</Canvas>
 		</div>
 	</Theatre>

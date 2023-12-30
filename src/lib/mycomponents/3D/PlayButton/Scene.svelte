@@ -14,4 +14,4 @@
 
  -->
 
-<PlayButtonSheet name="Main Sheet" on:start />
+<PlayButtonSheet name="Main Sheet" on:start on:destroy />

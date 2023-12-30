@@ -13,13 +13,13 @@
 
 	import tvState from "$lib/states/tvstate.json";
 
-	let man = "yo";
+	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
 	let isStarted = false;
 	let player: MediaPlayerElement;
-	let currentVideoProps = albums[0].videoProps;
+	let currentVideoProps = albums[19].videoProps;
 
-	let currentPosition = 1;
+	let currentPosition = 20;
 	let currentVolume = 50;
 
 	const playVideo = async (index: number) => {
@@ -57,7 +57,7 @@
 			setTimeout(resolve, 1000);
 		});
 		console.log("play");
-		await playVideo(0);
+		await playVideo(19);
 	};
 
 	$: {
@@ -79,52 +79,38 @@
 	}
 </script>
 
-<!--
-	<PlayButtonCanvas studio={false} on:start={onStart} />
+{#if !isPlayButtonDestroyed}
+	<PlayButtonCanvas
+		studio={false}
+		on:start={onStart}
+		on:destroy={() => (isPlayButtonDestroyed = true)}
+	/>
+{/if}
 
--->
-<Theatre config={{ state: tvState }} studio={{ enabled: false }}>
-	<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
-		start
-	</button>
+<Theatre config={{ state: tvState }} studio={{ enabled: true, hide: true }}>
+	<!--
+		<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
+			start
+		</button>
+
+	-->
 	<div
 		class={`relative flex ${
 			isStarted ? "h-[9500px]" : "h-[720px]"
 		} flex-col bg-black text-slate-200`}
 	>
-		<h1>Welcome to SvelteKit</h1>
-		<p>
-			Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-		</p>
-		<div class="flex h-[1000px] w-full justify-center">
-			<div class="fixed z-30 flex w-full justify-center p-8">
-				<div
-					class={`pointer-events-none fixed z-40 flex h-[720px] w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
-						isStarted ? "opacity-0" : "opacity-100"
-					} `}
-				/>
-				<!--
-					<svg
-					class=" fixed"
-					id="video-mask"
-					xmlns="http://www.w3.org/2000/svg"
-				viewBox="-20 -10 200 120"
-				preserveAspectRatio="xMidYMid slice"
-				>
-				<mask id="mask" x="0" y="0" width="100%" height="100%">
-					<rect id="maskrect" x="0" y="0" width="100%" height="100%" fill="white" />
-					<rect x="0" y="0" width="150" height="100" rx="20" />
-				</mask>
-				<rect x="0" y="0" width="100%" height="160" />
-			</svg>
-			
-		-->
-			</div>
+		<div class="p-4">
+			<div>{albums[currentPosition - 1].artist}</div>
 		</div>
+		<div
+			class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
+				isStarted ? "opacity-0" : "opacity-100"
+			} `}
+		/>
 		<VideoMask>
 			<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
 		</VideoMask>
-		<div class=" top-[400px] flex gap-4">
+		<div class=" top-[400px] flex w-full flex-wrap gap-4">
 			{#each positions as position}
 				<button
 					on:click={() => playVideo(positions.length - position)}
@@ -144,7 +130,7 @@
 			<TvCanvas />
 		</div>
 
-		<div class=" pointer-events-none fixed z-40 h-[720px] w-[1280px]">
+		<div class=" pointer-events-none fixed z-30 h-[720px] w-[1280px]">
 			<ForegroundCanvas />
 		</div>
 		<p>try scrolling down</p>
