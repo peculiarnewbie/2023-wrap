@@ -4,6 +4,7 @@
 	import { Theatre, Project, Studio, Sheet, Sequence } from "@threlte/theatre";
 	import { createEventDispatcher } from "svelte";
 	import Scene from "./Scene.svelte";
+	import tvState from "$lib/states/tvstate.json";
 
 	import state from "./state.json";
 
@@ -33,7 +34,7 @@
 </script>
 
 <div class={` ${isStarted ? "pointer-events-none" : ""}`}>
-	<Theatre>
+	<Theatre config={{ state: tvState }} studio={{ enabled: false }}>
 		<div class={` fixed z-50 h-screen w-screen`}>
 			<Canvas bind:this={canvas}>
 				<Scene on:start={handleStart} on:destroy />
