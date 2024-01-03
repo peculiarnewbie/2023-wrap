@@ -23,16 +23,17 @@
 	};
 
 	const watchState = () => {
-		if (!isPlaying && status == StateEnums.preStart) return;
+		if ((!isPlaying && status == StateEnums.preStart) || status == StateEnums.paused) return;
 		if (sheet.sequence.position > states[status].endTime) {
 			sheet.sequence.pause();
+			status = StateEnums.paused;
 			isPlaying = false;
 		}
 	};
 
 	$: {
 		console.log("status:", status);
-		playState(status);
+		if (status !== StateEnums.paused) playState(status);
 	}
 
 	onMount(() => {
