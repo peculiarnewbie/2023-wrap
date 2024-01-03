@@ -19,13 +19,13 @@
 			scale: { x: 1, y: 1, z: 1 }
 		},
 		callback: (node, { position, rotation, scale }) => {
-			tvPosition.set([position.x, position.y, position.z]);
+			tvPosition.set([position.x / 10, position.y / 10, position.z / 10]);
 			tvRotation.set([
 				rotation.x * (Math.PI / 180),
 				rotation.y * (Math.PI / 180),
 				rotation.z * (Math.PI / 180)
 			]);
-			tvScale.set([scale.x, scale.y, scale.z]);
+			tvScale.set([scale.x / 10, scale.y / 10, scale.z / 10]);
 		}
 	}}
 />

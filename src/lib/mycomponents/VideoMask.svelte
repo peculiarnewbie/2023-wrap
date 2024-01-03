@@ -21,9 +21,10 @@
 					h: 500,
 					w: 650,
 					rotation: { x: 0, y: 1, z: 0 },
-					multiplier: 1
+					multiplier: 1,
+					opacity: 1
 				},
-				callback: (node, { translate, h, w, rotation, multiplier }) => {
+				callback: (node, { translate, h, w, rotation, multiplier, opacity }) => {
 					node.style.height = `${h * scale}px`;
 					node.style.width = `${w * scale}px`;
 					videoH = h * scale;
@@ -37,6 +38,7 @@
 					rotateX(${rotation.x}deg)
 					rotateY(${rotation.y}deg) 
 					rotateZ(${rotation.z}deg) `;
+					node.style.opacity = `${opacity}`;
 					scale = 1 + multiplier * 0.1;
 				}
 			}}

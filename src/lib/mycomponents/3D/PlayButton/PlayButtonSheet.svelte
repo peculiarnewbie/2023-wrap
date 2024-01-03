@@ -77,7 +77,6 @@
 	};
 
 	onMount(() => {
-		console.log(sheet);
 		sheet.sequence.play();
 		sheet.sequence.position;
 
