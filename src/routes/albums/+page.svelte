@@ -15,6 +15,8 @@
 	import tvState from "$lib/states/tvstate.json";
 	import TvSequence from "$lib/mycomponents/3D/TVSequence.svelte";
 
+	import { tweened } from "svelte/motion";
+
 	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
 	let isStarted = false;
@@ -23,17 +25,24 @@
 
 	let currentPosition = 20;
 	let currentVolume = 50;
+	let tweenedVolume = tweened(50);
 
 	let tvSequenceStatus: StateKeys = StateEnums.preStart;
 
 	const playVideo = async (index: number) => {
+		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
+		else {
+			tvSequenceStatus = StateEnums.transition;
+			tweenedVolume.set(0);
+			await new Promise((resolve) => {
+				setTimeout(resolve, 1000);
+			});
+		}
 		console.log("played?");
-		player.volume = 0;
 		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;
+
 		currentVideoProps = albums[index].videoProps;
-		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
-		else tvSequenceStatus = StateEnums.transition;
 		while (!isPlayerReady) {
 			console.log("waiting for player");
 			await new Promise((resolve) => {
@@ -43,7 +52,7 @@
 		console.log("played");
 		//player.paused = false;
 		player.currentTime = currentVideoProps.startTime;
-		player.volume = currentVolume / 100;
+		tweenedVolume.set(currentVolume);
 	};
 
 	const checkPosition = (e: Event) => {
@@ -67,8 +76,12 @@
 	};
 
 	$: {
+		tweenedVolume.set(currentVolume);
+	}
+
+	$: {
 		if (isPlayerReady) {
-			player.volume = currentVolume / 100;
+			player.volume = $tweenedVolume / 100;
 		}
 	}
 

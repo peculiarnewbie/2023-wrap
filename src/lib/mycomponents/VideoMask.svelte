@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { SheetObject, createSheetObjectAction, createTransformer } from "@threlte/theatre";
 	import { types } from "@theatre/core";
+	import { onDestroy, onMount } from "svelte";
 
 	const wrapperSheetObject = createSheetObjectAction();
 	const videoSheetObject = createSheetObjectAction();
@@ -9,7 +10,26 @@
 
 	let videoH = 360;
 	let videoW = 484;
+
+	let resizeTimeout;
+
+	const resizeVideo = () => {
+		scale = window.innerHeight / 1113;
+	};
+
+	const handleResize = () => {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(() => {
+			resizeVideo();
+		}, 500);
+	};
+
+	onMount(() => {
+		resizeVideo();
+	});
 </script>
+
+<svelte:window on:resize={handleResize} />
 
 <div class=" pointer-events-none fixed z-20 h-screen w-screen">
 	<div class=" relative flex h-full w-full justify-center">
@@ -21,10 +41,9 @@
 					h: 500,
 					w: 650,
 					rotation: { x: 0, y: 1, z: 0 },
-					multiplier: 1,
 					opacity: 1
 				},
-				callback: (node, { translate, h, w, rotation, multiplier, opacity }) => {
+				callback: (node, { translate, h, w, rotation, opacity }) => {
 					node.style.height = `${h * scale}px`;
 					node.style.width = `${w * scale}px`;
 					videoH = h * scale;
@@ -39,7 +58,6 @@
 					rotateY(${rotation.y}deg) 
 					rotateZ(${rotation.z}deg) `;
 					node.style.opacity = `${opacity}`;
-					scale = 1 + multiplier * 0.1;
 				}
 			}}
 			class=" flex origin-center justify-center overflow-hidden"
