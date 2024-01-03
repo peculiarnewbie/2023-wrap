@@ -2,38 +2,41 @@
 	import type { ISheet } from "@theatre/core";
 	import { Sheet, SheetObject } from "@threlte/theatre";
 	import { onDestroy, onMount } from "svelte";
-
-	const StateEnums = {
-		preStart: -1,
-		start: 0,
-		transition: 1
-	} as const;
-
-	type StateKeys = (typeof StateEnums)[keyof typeof StateEnums];
+	import { StateEnums, type StateKeys } from "../tvStatuses";
 
 	const states: { name: StateKeys; startTime: number; endTime: number }[] = [
 		{ name: StateEnums.start, startTime: 0, endTime: 4 },
 		{ name: StateEnums.transition, startTime: 5, endTime: 9 }
 	];
 
-	export let status = StateEnums.preStart;
+	export let status: StateKeys;
 	let isPlaying = false;
 	let intervalId: number;
 
 	let sheet: ISheet | undefined;
 
 	const playState = (state: StateKeys) => {
+		if (state == StateEnums.preStart) return;
 		sheet.sequence.position = states[state].startTime;
 		sheet.sequence.play();
 		isPlaying = true;
 	};
 
+	const watchState = () => {
+		if (!isPlaying && status == StateEnums.preStart) return;
+		if (sheet.sequence.position > states[status].endTime) {
+			sheet.sequence.pause();
+			isPlaying = false;
+		}
+	};
+
 	$: {
+		console.log("status:", status);
 		playState(status);
 	}
 
 	onMount(() => {
-		intervalId = setInterval(manageState, 100);
+		intervalId = setInterval(watchState, 100);
 	});
 
 	onDestroy(() => {

@@ -10,6 +10,7 @@
 	import PlayButtonCanvas from "$lib/mycomponents/3D/PlayButton/PlayButtonCanvas.svelte";
 	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
 	import { Sheet, Theatre } from "@threlte/theatre";
+	import { StateEnums, type StateKeys } from "$lib/mycomponents/tvStatuses";
 
 	import tvState from "$lib/states/tvstate.json";
 	import TvSequence from "$lib/mycomponents/3D/TVSequence.svelte";
@@ -23,12 +24,16 @@
 	let currentPosition = 20;
 	let currentVolume = 50;
 
+	let tvSequenceStatus: StateKeys = StateEnums.preStart;
+
 	const playVideo = async (index: number) => {
 		console.log("played?");
 		player.volume = 0;
 		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;
 		currentVideoProps = albums[index].videoProps;
+		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
+		else tvSequenceStatus = StateEnums.transition;
 		while (!isPlayerReady) {
 			console.log("waiting for player");
 			await new Promise((resolve) => {
@@ -80,7 +85,6 @@
 	}
 </script>
 
-<!--
 {#if !isPlayButtonDestroyed}
 	<PlayButtonCanvas
 		studio={false}
@@ -89,12 +93,13 @@
 	/>
 {/if}
 
--->
-<Theatre config={{ state: tvState }} studio={{ enabled: true, hide: true }}>
-	<TvSequence>
-		<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
-			start
-		</button>
+<Theatre config={{ state: tvState }} studio={{ enabled: true, hide: false }}>
+	<TvSequence bind:status={tvSequenceStatus}>
+		<!--
+			<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
+				start
+			</button>
+		-->
 
 		<div
 			class={`relative flex ${
