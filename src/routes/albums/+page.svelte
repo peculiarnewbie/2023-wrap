@@ -93,14 +93,14 @@
 	/>
 {/if}
 
-<Theatre config={{ state: tvState }} studio={{ enabled: true, hide: true }}>
+<Theatre config={{ state: tvState }} studio={{ enabled: true }}>
 	<TvSequence bind:status={tvSequenceStatus}>
 		<!--
 			<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
 				start
 			</button>
+			
 		-->
-
 		<div
 			class={`relative flex ${
 				isStarted ? "h-[9500px]" : "h-[720px]"
