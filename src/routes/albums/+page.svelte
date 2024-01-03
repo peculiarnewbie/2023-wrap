@@ -93,7 +93,7 @@
 	/>
 {/if}
 
-<Theatre config={{ state: tvState }} studio={{ enabled: true, hide: false }}>
+<Theatre config={{ state: tvState }} studio={{ enabled: true, hide: true }}>
 	<TvSequence bind:status={tvSequenceStatus}>
 		<!--
 			<button class="fixed z-50 rounded-md bg-white" on:click={() => (isStarted = true)}>
