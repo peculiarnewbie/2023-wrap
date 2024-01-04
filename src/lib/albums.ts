@@ -4,14 +4,12 @@ export let albums: {
 	pos: number;
 	artist: string;
 	title: string;
-	albumArt: string;
 	videoProps: VideoProps;
 }[] = [
 	{
 		pos: 1,
 		artist: "Paramore",
 		title: "This is Why",
-		albumArt: "",
 		videoProps: {
 			title: "Paramore - Running Out of Time",
 			src: "https://www.youtube.com/watch?v=toKJP3luQbI",
@@ -23,7 +21,6 @@ export let albums: {
 		pos: 2,
 		artist: "Black Country, New Road",
 		title: "Live at Bush Hall",
-		albumArt: "",
 		videoProps: {
 			title: "Black Country, New Road - 'Live at Bush Hall'",
 			src: "https://www.youtube.com/watch?v=VbHV8oObR54&t=2751s",
@@ -35,7 +32,6 @@ export let albums: {
 		pos: 3,
 		artist: "Jeff Rosenstock",
 		title: "HELLMODE",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=y8vJxLjnhBw",
@@ -47,7 +43,6 @@ export let albums: {
 		pos: 4,
 		artist: "Sufjan Stevens",
 		title: "Javelin",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=OLeCIRC4taY",
@@ -59,7 +54,6 @@ export let albums: {
 		pos: 5,
 		artist: "boygenius",
 		title: "the album",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=bIX_ouNJsTs",
@@ -71,7 +65,6 @@ export let albums: {
 		pos: 6,
 		artist: "Carly Rae Jepsen",
 		title: "The Loveliest Time",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=e9SchUO-Qr8",
@@ -83,7 +76,6 @@ export let albums: {
 		pos: 7,
 		artist: "grouptherapy.",
 		title: "i was mature for my age, but i was still a child",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=s9AMFQbxj1Y",
@@ -95,7 +87,6 @@ export let albums: {
 		pos: 8,
 		artist: "KNOWER",
 		title: "KNOWER FOREVER",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=Ois3gfcwKSA",
@@ -107,7 +98,6 @@ export let albums: {
 		pos: 9,
 		artist: "underscores",
 		title: "Wallsocket",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=fG7foCO6wfc",
@@ -119,7 +109,6 @@ export let albums: {
 		pos: 10,
 		artist: "Caroline Polachek",
 		title: "Desire, I Want To Turn Into You",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=hxgcz_6GKX0",
@@ -131,7 +120,6 @@ export let albums: {
 		pos: 11,
 		artist: "Parannoul",
 		title: "After the Magic",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=nwo48c6aK6I",
@@ -143,7 +131,6 @@ export let albums: {
 		pos: 12,
 		artist: "Olivia Rodrigo",
 		title: "GUTS",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=ZsJ-BHohXRI",
@@ -155,7 +142,6 @@ export let albums: {
 		pos: 13,
 		artist: "Lana Del Rey",
 		title: "Did you know that there's a tunnel under Ocean Blvd",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=C2e0H6MUWyU",
@@ -167,7 +153,6 @@ export let albums: {
 		pos: 14,
 		artist: "Mitski",
 		title: "My Love Mine All Mine",
-		albumArt: "",
 		videoProps: {
 			title: "Mitski - My Love Mine All Mine",
 			src: "https://www.youtube.com/watch?v=vx4kLgnFexo",
@@ -179,7 +164,6 @@ export let albums: {
 		pos: 15,
 		artist: "yeule",
 		title: "Softscars",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=U112Stii6uE",
@@ -191,7 +175,6 @@ export let albums: {
 		pos: 16,
 		artist: "feeble little horse",
 		title: "Girl with Fish",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=K8czw_eChTE",
@@ -203,7 +186,6 @@ export let albums: {
 		pos: 17,
 		artist: "Sampha",
 		title: "Lahai",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=1YPtbploIyU",
@@ -215,7 +197,6 @@ export let albums: {
 		pos: 18,
 		artist: "Tinashe",
 		title: "BB_ANG3L",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=RVLGp0Ph9lA",
@@ -227,7 +208,6 @@ export let albums: {
 		pos: 19,
 		artist: "Balming Tiger",
 		title: "January Never Dies",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=zYNvj7_44Gs",
@@ -239,7 +219,6 @@ export let albums: {
 		pos: 20,
 		artist: "PinkPantheress",
 		title: "Heaven Knows",
-		albumArt: "",
 		videoProps: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=fd6tyv8GowY",

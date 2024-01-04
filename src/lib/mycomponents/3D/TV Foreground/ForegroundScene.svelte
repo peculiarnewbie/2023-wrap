@@ -2,6 +2,22 @@
 	import { T } from "@threlte/core";
 	import Foreground from "./Foreground.svelte";
 	import Tv from "../TV Background/TV.svelte";
+
+	import { tvCamera } from "$lib/stores";
+	import type { PerspectiveCamera } from "three";
+	import { onDestroy, onMount } from "svelte";
+
+	let camera: PerspectiveCamera;
+
+	const unsubscribe = tvCamera.subscribe((value) => {
+		if (camera == null) return;
+		camera.position.set(value.position.x, value.position.y, value.position.z);
+		camera.lookAt(value.lookAt.x, value.lookAt.y, 0);
+	});
+
+	onDestroy(() => {
+		unsubscribe();
+	});
 </script>
 
 <T.DirectionalLight intensity="1" rotation={[3, 3, 3]} />
@@ -9,10 +25,10 @@
 
 <T.PerspectiveCamera
 	makeDefault={true}
-	let:ref={camera}
+	bind:ref={camera}
 	on:create={({ ref }) => {
-		ref.position.set(0, -1, 5);
-		ref.lookAt(0, 0, 0);
+		ref.position.set($tvCamera.position.x, $tvCamera.position.y, $tvCamera.position.z);
+		ref.lookAt($tvCamera.lookAt.x, $tvCamera.lookAt.y, 0);
 	}}
 ></T.PerspectiveCamera>
 

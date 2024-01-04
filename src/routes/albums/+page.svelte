@@ -38,7 +38,6 @@
 				setTimeout(resolve, 1000);
 			});
 		}
-		console.log("played?");
 		if (currentPosition != index + 1) isPlayerReady = false;
 		currentPosition = index + 1;
 
@@ -49,7 +48,6 @@
 				setTimeout(resolve, 100);
 			});
 		}
-		console.log("played");
 		//player.paused = false;
 		player.currentTime = currentVideoProps.startTime;
 		tweenedVolume.set(currentVolume);
@@ -66,12 +64,12 @@
 	};
 
 	const onStart = async () => {
-		document.addEventListener("scroll", checkPosition);
+		if (isStarted) return;
+		//document.addEventListener("scroll", checkPosition);
 		isStarted = true;
 		await new Promise((resolve) => {
 			setTimeout(resolve, 1000);
 		});
-		console.log("play");
 		await playVideo(19);
 	};
 
@@ -84,13 +82,6 @@
 			player.volume = $tweenedVolume / 100;
 		}
 	}
-
-	onMount(() => {
-		console.log("mounted");
-	});
-	onDestroy(() => {
-		//document.removeEventListener("scroll", checkPosition);
-	});
 
 	let positions: number[] = [];
 	for (let i = 0; i < albums.length; i++) {
@@ -114,22 +105,28 @@
 			</button>
 			
 		-->
-		<div
-			class={`relative flex ${
-				isStarted ? "h-[9500px]" : "h-[720px]"
-			} flex-col bg-black text-slate-200`}
-		>
-			<div class="p-4">
-				<div>{albums[currentPosition - 1].artist}</div>
-			</div>
+		<div class="pointer-events-none fixed -z-10 flex h-screen w-screen bg-black">
+			<img
+				class={`pointer-events-none fixed -z-10 aspect-square h-[200vh] opacity-20 blur-3xl transition-transform ease-linear ${
+					isStarted ? "translate-x-[-1000px] translate-y-[-1000px]" : ""
+				}`}
+				style="animation-duration: 20s; transition-duration: 20s"
+				src={`/Albums/${currentPosition}.webp`}
+				alt="bg"
+			/>
+		</div>
+		<div class={`relative flex ${isStarted ? "h-[9500px]" : "h-720px"} flex-col  text-slate-200`}>
 			<div
 				class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
-					isStarted ? "opacity-0" : "opacity-100"
+					isStarted ? "opacity-0" : " opacity-100"
 				} `}
 			/>
-			<VideoMask>
-				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-			</VideoMask>
+			<div class="p-4">
+				<div class=" text-9xl">{albums[currentPosition - 1].artist}</div>
+				<div class="h-20 w-20">
+					<img src={`/Albums/${currentPosition}.webp`} alt="album art" />
+				</div>
+			</div>
 			<div class=" top-[400px] flex w-full flex-wrap gap-4">
 				{#each positions as position}
 					<button
@@ -146,6 +143,9 @@
 			</div>
 			<VolumeSlider bind:currentVolume />
 			<p>volume: {currentVolume / 100}</p>
+			<VideoMask>
+				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
+			</VideoMask>
 			<div class=" pointer-events-none fixed z-10 h-[720px] w-[1280px]">
 				<TvCanvas />
 			</div>

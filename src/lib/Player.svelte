@@ -20,7 +20,6 @@
 	let currentSrc = "";
 
 	onMount(() => {
-		console.log("mounted");
 		/**
 		 * You can add these tracks using HTML as well.
 		 *
@@ -49,7 +48,6 @@
 	}
 
 	const setTime = async () => {
-		console.log("ready");
 		await new Promise((resolve) => {
 			setTimeout(resolve, 200);
 		});
@@ -57,7 +55,6 @@
 
 	// We can listen for the `can-play` event to be notified when the player is ready.
 	function onCanPlay(event: MediaCanPlayEvent) {
-		console.log("rede");
 		isPlayerReady = true;
 		//setTime();
 		// ...

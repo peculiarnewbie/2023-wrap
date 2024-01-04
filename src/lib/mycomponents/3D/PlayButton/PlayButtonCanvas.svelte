@@ -10,7 +10,6 @@
 
 	import { onMount } from "svelte";
 
-	export let studio: boolean;
 	const dispatch = createEventDispatcher();
 
 	let canvas: Canvas;

@@ -5,8 +5,8 @@
 	import { StateEnums, type StateKeys } from "../tvStatuses";
 
 	const states: { name: StateKeys; startTime: number; endTime: number }[] = [
-		{ name: StateEnums.start, startTime: 0, endTime: 4 },
-		{ name: StateEnums.transition, startTime: 5, endTime: 9 }
+		{ name: StateEnums.start, startTime: 0, endTime: 3 },
+		{ name: StateEnums.transition, startTime: 5, endTime: 7 }
 	];
 
 	export let status: StateKeys;
@@ -32,7 +32,7 @@
 	};
 
 	$: {
-		console.log("status:", status);
+		//console.log("status:", status);
 		if (status !== StateEnums.paused) playState(status);
 	}
 

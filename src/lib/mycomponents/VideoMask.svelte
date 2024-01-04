@@ -14,7 +14,8 @@
 	let resizeTimeout;
 
 	const resizeVideo = () => {
-		scale = window.innerHeight / 1113;
+		scale = window.outerHeight / 1113;
+		if (window.innerWidth < 641) scale /= 1.5;
 	};
 
 	const handleResize = () => {
@@ -60,7 +61,7 @@
 					node.style.opacity = `${opacity}`;
 				}
 			}}
-			class=" flex origin-center justify-center overflow-hidden"
+			class="fixed top-[61%] flex origin-center justify-center overflow-hidden sm:top-[31%]"
 		>
 			<div
 				use:videoSheetObject={{
