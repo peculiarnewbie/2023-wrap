@@ -31,8 +31,10 @@
 
 	let tvSequenceStatus: StateKeys = StateEnums.preStart;
 
+	let windowWidth: number;
+	let windowHeight: number;
+
 	const playVideo = async (index: number) => {
-		handleResize();
 		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
 		else {
 			transitionHandler(index + 1);
@@ -68,6 +70,7 @@
 	};
 
 	const onStart = async () => {
+		handleResize(windowWidth, windowHeight);
 		if (isStarted) return;
 		//document.addEventListener("scroll", checkPosition);
 		isStarted = true;
@@ -97,6 +100,8 @@
 	<PlayButtonCanvas on:start={onStart} on:destroy={() => (isPlayButtonDestroyed = true)} />
 {/if}
 
+<svelte:window bind:innerWidth={windowWidth} bind:outerHeight={windowHeight} />
+
 <Theatre studio={{ enabled: false }}>
 	<TvSequence bind:status={tvSequenceStatus}>
 		<!--
@@ -121,7 +126,10 @@
 			<div class=" top-[400px] flex w-full flex-wrap gap-4">
 				{#each positions as position}
 					<button
-						on:click={() => playVideo(positions.length - position)}
+						on:click={() => {
+							handleResize(windowWidth, windowHeight);
+							playVideo(positions.length - position);
+						}}
 						class={`rounded-md py-2 transition-all duration-200 ${
 							currentPosition == positions.length - position + 1
 								? "bg-orange-600 px-8"

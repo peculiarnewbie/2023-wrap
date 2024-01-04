@@ -1,8 +1,5 @@
-<script context="module">
-	let func;
-	export let handleResize = () => {
-		func();
-	};
+<script context="module" lang="ts">
+	export let handleResize: (w: number, h: number) => void;
 </script>
 
 <script lang="ts">
@@ -18,19 +15,20 @@
 	let videoH = 360;
 	let videoW = 484;
 
-	const resizeVideo = () => {
-		if (window.innerWidth > 640) {
-			scale = window.outerHeight / 1113;
+	const resizeVideo = (w: number, h: number) => {
+		console.log(w, h);
+		if (w > 640) {
+			scale = h / 1113;
 			tvCamera.set({ position: { x: 0, y: -1, z: 5 }, lookAt: { x: 0, y: 0 } });
 		} else {
 			tvCamera.set({ position: { x: 0, y: -1, z: 7 }, lookAt: { x: 0, y: 1.6 } });
-			scale = window.outerHeight / 1113;
+			scale = h / 1113;
 			scale /= 1.5;
 		}
 	};
 
 	onMount(() => {
-		func = resizeVideo;
+		handleResize = resizeVideo;
 	});
 </script>
 
