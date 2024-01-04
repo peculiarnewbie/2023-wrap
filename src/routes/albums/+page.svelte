@@ -16,7 +16,9 @@
 	import TvSequence from "$lib/mycomponents/3D/TVSequence.svelte";
 
 	import { tweened } from "svelte/motion";
-
+	import BlurBackground, {
+		transitionHandler
+	} from "$lib/mycomponents/Background/BlurBackground.svelte";
 	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
 	let isStarted = false;
@@ -32,6 +34,7 @@
 	const playVideo = async (index: number) => {
 		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
 		else {
+			transitionHandler(index + 1);
 			tvSequenceStatus = StateEnums.transition;
 			tweenedVolume.set(0);
 			await new Promise((resolve) => {
@@ -90,11 +93,7 @@
 </script>
 
 {#if !isPlayButtonDestroyed}
-	<PlayButtonCanvas
-		studio={false}
-		on:start={onStart}
-		on:destroy={() => (isPlayButtonDestroyed = true)}
-	/>
+	<PlayButtonCanvas on:start={onStart} on:destroy={() => (isPlayButtonDestroyed = true)} />
 {/if}
 
 <Theatre studio={{ enabled: false }}>
@@ -105,16 +104,7 @@
 			</button>
 			
 		-->
-		<div class="pointer-events-none fixed -z-10 flex h-screen w-screen bg-black">
-			<img
-				class={`pointer-events-none fixed -z-10 aspect-square h-[200vh] opacity-20 blur-3xl transition-transform ease-linear ${
-					isStarted ? "translate-x-[-1000px] translate-y-[-1000px]" : ""
-				}`}
-				style="animation-duration: 20s; transition-duration: 20s"
-				src={`/Albums/${currentPosition}.webp`}
-				alt="bg"
-			/>
-		</div>
+		<BlurBackground />
 		<div class={`relative flex ${isStarted ? "h-[9500px]" : "h-720px"} flex-col  text-slate-200`}>
 			<div
 				class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
