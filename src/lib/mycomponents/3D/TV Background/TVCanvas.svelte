@@ -5,33 +5,9 @@
 
 	import { tvPosition, tvRotation, tvScale } from "$lib/stores";
 	import { createSheetObjectAction } from "@threlte/theatre";
-	import { onMount } from "svelte";
-	import { tvCamera } from "$lib/stores";
 
 	const tvSheetObject = createSheetObjectAction();
-	let resizeTimeout;
-
-	const resizeVideo = () => {
-		if (window.innerWidth > 640) {
-			tvCamera.set({ position: { x: 0, y: -1, z: 5 }, lookAt: { x: 0, y: 0 } });
-		} else {
-			tvCamera.set({ position: { x: 0, y: -1, z: 7 }, lookAt: { x: 0, y: 1.6 } });
-		}
-	};
-
-	const handleResize = () => {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(() => {
-			resizeVideo();
-		}, 500);
-	};
-
-	onMount(() => {
-		resizeVideo();
-	});
 </script>
-
-<svelte:window on:resize={handleResize} />
 
 <div
 	class=" hidden"

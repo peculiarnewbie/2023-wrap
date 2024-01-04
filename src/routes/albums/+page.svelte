@@ -8,7 +8,7 @@
 	import TvCanvas from "$lib/mycomponents/3D/TV Background/TVCanvas.svelte";
 	import ForegroundCanvas from "$lib/mycomponents/3D/TV Foreground/ForegroundCanvas.svelte";
 	import PlayButtonCanvas from "$lib/mycomponents/3D/PlayButton/PlayButtonCanvas.svelte";
-	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
+	import VideoMask, { handleResize } from "$lib/mycomponents/VideoMask.svelte";
 	import { Sheet, Theatre } from "@threlte/theatre";
 	import { StateEnums, type StateKeys } from "$lib/mycomponents/tvStatuses";
 
@@ -32,6 +32,7 @@
 	let tvSequenceStatus: StateKeys = StateEnums.preStart;
 
 	const playVideo = async (index: number) => {
+		handleResize();
 		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
 		else {
 			transitionHandler(index + 1);

@@ -1,7 +1,14 @@
+<script context="module">
+	let func;
+	export let handleResize = () => {
+		func();
+	};
+</script>
+
 <script lang="ts">
-	import { SheetObject, createSheetObjectAction, createTransformer } from "@threlte/theatre";
-	import { types } from "@theatre/core";
-	import { onDestroy, onMount } from "svelte";
+	import { createSheetObjectAction } from "@threlte/theatre";
+	import { onMount } from "svelte";
+	import { tvCamera } from "$lib/stores";
 
 	const wrapperSheetObject = createSheetObjectAction();
 	const videoSheetObject = createSheetObjectAction();
@@ -11,26 +18,21 @@
 	let videoH = 360;
 	let videoW = 484;
 
-	let resizeTimeout;
-
 	const resizeVideo = () => {
-		scale = window.outerHeight / 1113;
-		if (window.innerWidth < 641) scale /= 1.5;
-	};
-
-	const handleResize = () => {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(() => {
-			resizeVideo();
-		}, 500);
+		if (window.innerWidth > 640) {
+			scale = window.outerHeight / 1113;
+			tvCamera.set({ position: { x: 0, y: -1, z: 5 }, lookAt: { x: 0, y: 0 } });
+		} else {
+			tvCamera.set({ position: { x: 0, y: -1, z: 7 }, lookAt: { x: 0, y: 1.6 } });
+			scale = window.outerHeight / 1113;
+			scale /= 1.5;
+		}
 	};
 
 	onMount(() => {
-		resizeVideo();
+		func = resizeVideo;
 	});
 </script>
-
-<svelte:window on:resize={handleResize} />
 
 <div class=" pointer-events-none fixed z-20 h-screen w-screen">
 	<div class=" relative flex h-full w-full justify-center">
@@ -61,7 +63,7 @@
 					node.style.opacity = `${opacity}`;
 				}
 			}}
-			class="fixed top-[61%] flex origin-center justify-center overflow-hidden sm:top-[31%]"
+			class="fixed top-[62vh] flex origin-center justify-center overflow-hidden sm:top-[31vh]"
 		>
 			<div
 				use:videoSheetObject={{
