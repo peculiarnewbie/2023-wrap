@@ -2,21 +2,14 @@
 	import { T } from "@threlte/core";
 	import Foreground from "./Foreground.svelte";
 	import Tv from "../TV Background/TV.svelte";
-
-	import { tvCamera } from "$lib/stores";
 	import type { PerspectiveCamera } from "three";
 	import { onDestroy, onMount } from "svelte";
 
 	let camera: PerspectiveCamera;
 
-	const unsubscribe = tvCamera.subscribe((value) => {
-		if (camera == null) return;
-		camera.position.set(value.position.x, value.position.y, value.position.z);
-		camera.lookAt(value.lookAt.x, value.lookAt.y, 0);
-	});
-
-	onDestroy(() => {
-		unsubscribe();
+	onMount(() => {
+		camera.position.set(0, -1, 5);
+		camera.lookAt(0, 0, 0);
 	});
 </script>
 

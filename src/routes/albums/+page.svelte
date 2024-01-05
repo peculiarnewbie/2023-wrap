@@ -3,22 +3,22 @@
 	import Player from "$lib/Player.svelte";
 	import type { MediaPlayerElement } from "vidstack/elements";
 	import { albums } from "$lib/albums";
-	import { onDestroy, onMount } from "svelte";
 	import VolumeSlider from "$lib/mycomponents/VolumeSlider/VolumeSlider.svelte";
 	import TvCanvas from "$lib/mycomponents/3D/TV Background/TVCanvas.svelte";
 	import ForegroundCanvas from "$lib/mycomponents/3D/TV Foreground/ForegroundCanvas.svelte";
 	import PlayButtonCanvas from "$lib/mycomponents/3D/PlayButton/PlayButtonCanvas.svelte";
-	import VideoMask, { handleResize } from "$lib/mycomponents/VideoMask.svelte";
+	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
 	import { Sheet, Theatre } from "@threlte/theatre";
 	import { StateEnums, type StateKeys } from "$lib/mycomponents/tvStatuses";
 
-	import tvState from "$lib/states/tvstate.json";
 	import TvSequence from "$lib/mycomponents/3D/TVSequence.svelte";
 
 	import { tweened } from "svelte/motion";
 	import BlurBackground, {
-		transitionHandler
+		transitionHandler,
+		bgResize
 	} from "$lib/mycomponents/Background/BlurBackground.svelte";
+
 	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
 	let isStarted = false;
@@ -70,7 +70,7 @@
 	};
 
 	const onStart = async () => {
-		handleResize(windowWidth, windowHeight);
+		bgResize(windowWidth, windowHeight);
 		if (isStarted) return;
 		//document.addEventListener("scroll", checkPosition);
 		isStarted = true;
@@ -127,7 +127,7 @@
 				{#each positions as position}
 					<button
 						on:click={() => {
-							handleResize(windowWidth, windowHeight);
+							bgResize(windowWidth, windowHeight);
 							playVideo(positions.length - position);
 						}}
 						class={`rounded-md py-2 transition-all duration-200 ${

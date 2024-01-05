@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export let handleResize: (w: number, h: number) => void;
-</script>
-
 <script lang="ts">
 	import { createSheetObjectAction } from "@threlte/theatre";
 	import { onMount } from "svelte";
@@ -14,25 +10,11 @@
 
 	let videoH = 360;
 	let videoW = 484;
-
-	const resizeVideo = (w: number, h: number) => {
-		console.log(w, h);
-		if (w > 640) {
-			scale = h / 1113;
-			tvCamera.set({ position: { x: 0, y: -1, z: 5 }, lookAt: { x: 0, y: 0 } });
-		} else {
-			tvCamera.set({ position: { x: 0, y: -1, z: 7 }, lookAt: { x: 0, y: 1.6 } });
-			scale = h / 1113;
-			scale /= 1.5;
-		}
-	};
-
-	onMount(() => {
-		handleResize = resizeVideo;
-	});
 </script>
 
-<div class=" pointer-events-none fixed z-20 h-screen w-screen">
+<div
+	class={` pointer-events-none fixed -left-1/2 top-[24%] z-20 h-screen w-[200vw] scale-[0.70] lg:left-[-20%] lg:top-0 lg:scale-100`}
+>
 	<div class=" relative flex h-full w-full justify-center">
 		<div
 			use:wrapperSheetObject={{
@@ -61,7 +43,7 @@
 					node.style.opacity = `${opacity}`;
 				}
 			}}
-			class="fixed top-[62vh] flex origin-center justify-center overflow-hidden sm:top-[31vh]"
+			class="fixed top-[31vh] flex origin-center justify-center overflow-hidden"
 		>
 			<div
 				use:videoSheetObject={{
