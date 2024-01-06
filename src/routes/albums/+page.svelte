@@ -7,7 +7,7 @@
 	import TvCanvas from "$lib/mycomponents/3D/TV Background/TVCanvas.svelte";
 	import ForegroundCanvas from "$lib/mycomponents/3D/TV Foreground/ForegroundCanvas.svelte";
 	import PlayButtonCanvas from "$lib/mycomponents/3D/PlayButton/PlayButtonCanvas.svelte";
-	import VideoMask from "$lib/mycomponents/VideoMask.svelte";
+	import VideoMask, { handleResize } from "$lib/mycomponents/VideoMask.svelte";
 	import { Sheet, Theatre } from "@threlte/theatre";
 	import { StateEnums, type StateKeys } from "$lib/mycomponents/tvStatuses";
 
@@ -71,6 +71,7 @@
 
 	const onStart = async () => {
 		bgResize(windowWidth, windowHeight);
+		handleResize(windowWidth, windowHeight);
 		if (isStarted) return;
 		//document.addEventListener("scroll", checkPosition);
 		isStarted = true;
@@ -131,6 +132,7 @@
 						<button
 							on:click={() => {
 								bgResize(windowWidth, windowHeight);
+								handleResize(windowWidth, windowHeight);
 								playVideo(positions.length - position);
 							}}
 							class={`rounded-md py-2 transition-all duration-200 ${
@@ -146,23 +148,26 @@
 				<VolumeSlider bind:currentVolume />
 				<p>volume: {currentVolume / 100}</p>
 				<div
-					class={` pointer-events-none fixed -left-1/2 top-[24%] z-20 h-screen w-[200vw] scale-[0.70] md:top-[18%] md:scale-[0.85] lg:left-[-20%] lg:top-0 lg:scale-100`}
+					class={` pointer-events-none fixed -left-1/2 top-[24%] h-screen w-[200vw] scale-[0.70] md:top-[18%] md:scale-[0.85] lg:left-[-20%] lg:top-0 lg:scale-100`}
 				>
-					<VideoMask>
-						<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-					</VideoMask>
-					<div class=" pointer-events-none fixed z-10 h-screen w-screen">
-						<div class="pointer-events-none relative h-full w-full">
-							<TvCanvas />
+					<div class="relative z-20 h-full w-full">
+						<VideoMask>
+							<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
+						</VideoMask>
+
+						<div class=" pointer-events-none fixed top-0 -z-10 h-[screen] w-screen">
+							<div class="pointer-events-none relative h-full w-full">
+								<TvCanvas />
+							</div>
+						</div>
+						<div class=" pointer-events-none fixed top-0 z-10 h-[screen] w-screen">
+							<div class="pointer-events-none relative h-full w-full">
+								<ForegroundCanvas />
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class=" pointer-events-none fixed z-30 h-screen w-screen">
-					<div class="pointer-events-none relative h-full w-full">
-						<ForegroundCanvas />
-					</div>
-				</div>
 				<p>try scrolling down</p>
 			</div>
 		</div>

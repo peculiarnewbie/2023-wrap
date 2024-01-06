@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	export let handleResize: (w: number, h: number) => void;
+</script>
+
 <script lang="ts">
 	import { createSheetObjectAction } from "@threlte/theatre";
 	import { onMount } from "svelte";
@@ -10,6 +14,15 @@
 
 	let videoH = 360;
 	let videoW = 484;
+
+	const resizeVideo = (w: number, h: number) => {
+		console.log(w, h);
+		scale = h / 1113;
+	};
+
+	onMount(() => {
+		handleResize = resizeVideo;
+	});
 </script>
 
 <div class=" relative flex h-full w-full justify-center">
