@@ -110,49 +110,61 @@
 			</button>
 			
 		-->
-		<BlurBackground />
-		<div class={`relative flex ${isStarted ? "h-[9500px]" : "h-720px"} flex-col  text-slate-200`}>
-			<div
-				class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
-					isStarted ? "opacity-0" : " opacity-100"
-				} `}
-			/>
-			<div class="p-4">
-				<div class=" text-9xl">{albums[currentPosition - 1].artist}</div>
-				<div class="h-20 w-20">
-					<img src={`/Albums/${currentPosition}.webp`} alt="album art" />
+		<div
+			class={`fixed flex ${isStarted ? "h-[9500px]" : "h-720px"} w-screen flex-col text-slate-200`}
+		>
+			<div class=" relative flex h-screen w-screen flex-col overflow-hidden">
+				<BlurBackground />
+				<div
+					class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
+						isStarted ? "opacity-0" : " opacity-100"
+					} `}
+				/>
+				<div class="p-4">
+					<div class=" text-9xl">{albums[currentPosition - 1].artist}</div>
+					<div class="h-20 w-20">
+						<img src={`/Albums/${currentPosition}.webp`} alt="album art" />
+					</div>
 				</div>
-			</div>
-			<div class=" top-[400px] flex w-full flex-wrap gap-4">
-				{#each positions as position}
-					<button
-						on:click={() => {
-							bgResize(windowWidth, windowHeight);
-							playVideo(positions.length - position);
-						}}
-						class={`rounded-md py-2 transition-all duration-200 ${
-							currentPosition == positions.length - position + 1
-								? "bg-orange-600 px-8"
-								: "bg-cyan-500 px-4"
-						}`}
-					>
-						{positions.length + 1 - position}
-					</button>
-				{/each}
-			</div>
-			<VolumeSlider bind:currentVolume />
-			<p>volume: {currentVolume / 100}</p>
-			<VideoMask>
-				<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
-			</VideoMask>
-			<div class=" pointer-events-none fixed z-10 h-[720px] w-[1280px]">
-				<TvCanvas />
-			</div>
+				<div class=" top-[400px] flex w-full flex-wrap gap-4">
+					{#each positions as position}
+						<button
+							on:click={() => {
+								bgResize(windowWidth, windowHeight);
+								playVideo(positions.length - position);
+							}}
+							class={`rounded-md py-2 transition-all duration-200 ${
+								currentPosition == positions.length - position + 1
+									? "bg-orange-600 px-8"
+									: "bg-cyan-500 px-4"
+							}`}
+						>
+							{positions.length + 1 - position}
+						</button>
+					{/each}
+				</div>
+				<VolumeSlider bind:currentVolume />
+				<p>volume: {currentVolume / 100}</p>
+				<div
+					class={` pointer-events-none fixed -left-1/2 top-[24%] z-20 h-screen w-[200vw] scale-[0.70] md:top-[18%] md:scale-[0.85] lg:left-[-20%] lg:top-0 lg:scale-100`}
+				>
+					<VideoMask>
+						<Player bind:player bind:isPlayerReady videoProps={currentVideoProps}></Player>
+					</VideoMask>
+					<div class=" pointer-events-none fixed z-10 h-screen w-screen">
+						<div class="pointer-events-none relative h-full w-full">
+							<TvCanvas />
+						</div>
+					</div>
+				</div>
 
-			<div class=" pointer-events-none fixed z-30 h-[720px] w-[1280px]">
-				<ForegroundCanvas />
+				<div class=" pointer-events-none fixed z-30 h-screen w-screen">
+					<div class="pointer-events-none relative h-full w-full">
+						<ForegroundCanvas />
+					</div>
+				</div>
+				<p>try scrolling down</p>
 			</div>
-			<p>try scrolling down</p>
 		</div>
 	</TvSequence>
 </Theatre>
