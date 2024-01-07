@@ -5,7 +5,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 
-	let currentPosition = 20;
+	export let currentPosition = 20;
 
 	let size = 1;
 
@@ -29,8 +29,8 @@
 	<div class="relative aspect-square" style={`height: ${size}px; width: ${size}px;`}>
 		<img
 			class={`pointer-events-none -z-10 h-full opacity-25 transition-transform ease-linear`}
-			style={`animation-duration: ${isTransitioning ? (isPreTransition ? "1" : "0") : "20"}s; 
-            transition-duration: ${isTransitioning ? (isPreTransition ? "1" : "0") : "20"}s; 
+			style={`animation-duration: ${isTransitioning ? (isPreTransition ? "1" : "0") : "30"}s; 
+            transition-duration: ${isTransitioning ? (isPreTransition ? "1" : "0") : "30"}s; 
             transform: translate3d(${
 							isTransitioning
 								? isPreTransition

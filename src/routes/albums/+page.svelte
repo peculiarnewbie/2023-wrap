@@ -51,6 +51,9 @@
 	};
 
 	const transitionHandler = async (position: number) => {
+		await new Promise((resolve) => {
+			setTimeout(resolve, 0);
+		});
 		startPreTransition();
 
 		await new Promise((resolve) => {
@@ -102,6 +105,7 @@
 	};
 
 	const onStart = async () => {
+		document.getElementById("loadingText").style.display = "none";
 		bgResize(windowWidth, windowHeight);
 		handleResize(windowWidth, windowHeight);
 		if (isStarted) return;
@@ -129,7 +133,15 @@
 	}
 </script>
 
-{#if !isPlayButtonDestroyed && false}
+<div
+	id="loadingText"
+	class={` pointer-events-none fixed h-screen w-screen items-center justify-center pb-10 ${
+		isStarted ? "hidden" : "flex"
+	}`}
+>
+	<div class=" text-2xl text-slate-200">loading...</div>
+</div>
+{#if !isPlayButtonDestroyed}
 	<PlayButtonCanvas on:start={onStart} on:destroy={() => (isPlayButtonDestroyed = true)} />
 {/if}
 
@@ -144,14 +156,16 @@
 			
 		-->
 		<div
-			class={`fixed flex ${isStarted ? "h-[9500px]" : "h-720px"} w-screen flex-col text-slate-200`}
+			class={`fixed top-0 flex ${
+				isStarted ? "h-[9500px]" : "h-720px"
+			} w-screen flex-col text-slate-200`}
 		>
 			<div class=" relative flex h-screen w-screen flex-col overflow-hidden">
-				<BlurBackground {isPreTransition} {isTransitioning} />
+				<BlurBackground {isPreTransition} {isTransitioning} {currentPosition} />
 				<div
 					id="curtain"
 					class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
-						isStarted ? "opacity-0" : " opacity-0"
+						isStarted ? "opacity-0" : " opacity-100"
 					} `}
 				/>
 				<AlbumInfos {isPreTransition} {isTransitioning} {currentPosition} />
@@ -176,7 +190,7 @@
 				<VolumeSlider bind:currentVolume />
 				<p>volume: {currentVolume / 100}</p>
 				<div
-					class={` pointer-events-none fixed -left-1/2 top-[24%] h-screen w-[200vw] scale-[0.70] md:top-[18%] md:scale-[0.85] lg:left-[-20%] lg:top-0 lg:scale-100`}
+					class={` pointer-events-none fixed -left-1/2 top-[26%] h-screen w-[200vw] scale-[0.70] md:top-[19%] md:scale-[0.85] lg:left-[-20%] lg:top-0 lg:scale-100`}
 				>
 					<div class="relative z-20 h-full w-full">
 						<VideoMask>

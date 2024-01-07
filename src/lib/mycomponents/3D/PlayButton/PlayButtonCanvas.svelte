@@ -34,7 +34,7 @@
 
 <div class={` ${isStarted ? "pointer-events-none" : ""} h-screen w-screen`}>
 	<Theatre config={{ state: tvState }} studio={{ enabled: false }}>
-		<div class={` fixed z-50 h-screen w-screen`}>
+		<div class={` fixed z-40 h-screen w-screen`}>
 			<Canvas bind:this={canvas}>
 				<Scene on:start={handleStart} on:destroy />
 			</Canvas>
