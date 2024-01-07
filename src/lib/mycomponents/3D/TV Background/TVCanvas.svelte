@@ -30,7 +30,7 @@
 	}}
 />
 
-<div class="fixed h-full w-full">
+<div class="fixed flex h-full w-full justify-center">
 	<Canvas>
 		<TvScene />
 	</Canvas>

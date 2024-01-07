@@ -14,10 +14,8 @@
 	import TvSequence from "$lib/mycomponents/3D/TVSequence.svelte";
 
 	import { tweened } from "svelte/motion";
-	import BlurBackground, {
-		transitionHandler,
-		bgResize
-	} from "$lib/mycomponents/Background/BlurBackground.svelte";
+	import BlurBackground, { bgResize } from "$lib/mycomponents/Background/BlurBackground.svelte";
+	import AlbumInfos from "$lib/mycomponents/AlbumInfos.svelte";
 
 	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
@@ -25,7 +23,7 @@
 	let player: MediaPlayerElement;
 	let currentVideoProps = albums[19].videoProps;
 
-	let currentPosition = 20;
+	let currentPosition: number = 20;
 	let currentVolume = 50;
 	let tweenedVolume = tweened(50);
 
@@ -33,6 +31,40 @@
 
 	let windowWidth: number;
 	let windowHeight: number;
+
+	let isPreTransition = false;
+	let isTransitioning = false;
+
+	const startPreTransition = () => {
+		isPreTransition = true;
+		isTransitioning = true;
+	};
+
+	const endPreTransition = (position: number) => {
+		isPreTransition = false;
+		console.log(position);
+		currentPosition = position;
+	};
+
+	const endTransition = () => {
+		isTransitioning = false;
+	};
+
+	const transitionHandler = async (position: number) => {
+		startPreTransition();
+
+		await new Promise((resolve) => {
+			setTimeout(resolve, 1000);
+		});
+
+		endPreTransition(position);
+
+		await new Promise((resolve) => {
+			setTimeout(resolve, 500);
+		});
+
+		endTransition();
+	};
 
 	const playVideo = async (index: number) => {
 		if (tvSequenceStatus == StateEnums.preStart) tvSequenceStatus = StateEnums.start;
@@ -97,7 +129,7 @@
 	}
 </script>
 
-{#if !isPlayButtonDestroyed}
+{#if !isPlayButtonDestroyed && false}
 	<PlayButtonCanvas on:start={onStart} on:destroy={() => (isPlayButtonDestroyed = true)} />
 {/if}
 
@@ -115,18 +147,14 @@
 			class={`fixed flex ${isStarted ? "h-[9500px]" : "h-720px"} w-screen flex-col text-slate-200`}
 		>
 			<div class=" relative flex h-screen w-screen flex-col overflow-hidden">
-				<BlurBackground />
+				<BlurBackground {isPreTransition} {isTransitioning} />
 				<div
+					id="curtain"
 					class={`pointer-events-none fixed z-40 flex h-screen w-full flex-col items-center justify-center bg-black transition-opacity duration-1000 ${
-						isStarted ? "opacity-0" : " opacity-100"
+						isStarted ? "opacity-0" : " opacity-0"
 					} `}
 				/>
-				<div class="p-4">
-					<div class=" text-9xl">{albums[currentPosition - 1].artist}</div>
-					<div class="h-20 w-20">
-						<img src={`/Albums/${currentPosition}.webp`} alt="album art" />
-					</div>
-				</div>
+				<AlbumInfos {isPreTransition} {isTransitioning} {currentPosition} />
 				<div class=" top-[400px] flex w-full flex-wrap gap-4">
 					{#each positions as position}
 						<button

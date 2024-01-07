@@ -1,6 +1,4 @@
 <script lang="ts" context="module">
-	export let transitionHandler: (position: number) => void;
-
 	export let bgResize: (w: number, h: number) => void;
 </script>
 
@@ -9,41 +7,10 @@
 
 	let currentPosition = 20;
 
-	let isPreTransition = false;
-	let isTransitioning = false;
-
 	let size = 1;
 
-	const startPreTransition = () => {
-		isPreTransition = true;
-		isTransitioning = true;
-	};
-
-	const endPreTransition = (position: number) => {
-		isPreTransition = false;
-		console.log(position);
-		currentPosition = position;
-	};
-
-	const endTransition = () => {
-		isTransitioning = false;
-	};
-
-	const transitionBG = async (position: number) => {
-		startPreTransition();
-
-		await new Promise((resolve) => {
-			setTimeout(resolve, 1000);
-		});
-
-		endPreTransition(position);
-
-		await new Promise((resolve) => {
-			setTimeout(resolve, 500);
-		});
-
-		endTransition();
-	};
+	export let isPreTransition: boolean;
+	export let isTransitioning: boolean;
 
 	const resize = (w: number, h: number) => {
 		size = w * 2;
@@ -51,7 +18,6 @@
 	};
 
 	onMount(() => {
-		transitionHandler = transitionBG;
 		bgResize = resize;
 	});
 </script>
