@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class=" flex h-[50vh] flex-col items-center p-4 text-center lg:h-screen lg:items-start lg:text-left"
+	class=" flex h-[50vh] flex-col items-center p-4 text-center lg:h-[90vh] lg:items-start lg:text-left"
 >
 	<div
 		class={` fixed h-max overflow-hidden whitespace-nowrap pb-8 transition-[width,opacity] duration-700 ${
@@ -16,13 +16,13 @@
 		}`}
 	>
 		<div
-			class="text-3xl transition-all duration-200 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+			class="font-lato text-3xl transition-all duration-200 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
 		>
 			{albums[currentPosition - 1].artist}
 		</div>
 	</div>
-	<div class=" h-12 sm:h-14 md:h-16 lg:h-20 xl:h-28 2xl:h-40" />
-	<div class=" h-1 w-screen md:h-2">
+	<div class=" h-8 shrink-0 sm:h-12 md:h-14 lg:h-[4.5rem] xl:h-24 2xl:h-32" />
+	<div class=" h-1 w-screen shrink-0 md:h-2">
 		<div
 			class={`h-full w-[110vw] rounded-full bg-slate-200 blur-sm transition-all 
         ${
@@ -34,18 +34,20 @@
 				}`}
 		/>
 	</div>
-	<div class="h-max overflow-hidden pb-4">
+	<div class="h-max shrink-0 overflow-hidden pb-4">
 		<div
-			class={` pl-2 text-lg transition-transform duration-700 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl
+			class={` font-lato pl-2 text-lg transition-transform duration-700 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl
 			${isTransitioning ? " -translate-y-28" : "translate-y-0 "}
 		`}
 		>
 			{albums[currentPosition - 1].title}
 		</div>
 	</div>
-	<div class="relative flex h-full w-1/2 shrink items-center justify-center p-16">
+	<div
+		class="relative flex h-full w-full shrink flex-col items-center justify-center pb-4 lg:w-1/2 lg:p-16"
+	>
 		<img
-			class={`fixed m-auto aspect-square h-44 rounded-lg shadow-xl shadow-neutral-800 transition-all lg:h-80 lg:rounded-2xl xl:h-[480px] 2xl:h-[600px]
+			class={`m-auto aspect-square h-44 rounded-lg shadow-xl shadow-neutral-800 transition-all lg:h-80 lg:rounded-2xl xl:h-[480px] 2xl:h-[600px]
 				${
 					isTransitioning
 						? isPreTransition
@@ -68,5 +70,6 @@
 			src={`/Albums/${currentPosition}.webp`}
 			alt="album art"
 		/>
+		<div class="p-2" />
 	</div>
 </div>

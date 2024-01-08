@@ -16,6 +16,8 @@
 	import { tweened } from "svelte/motion";
 	import BlurBackground, { bgResize } from "$lib/mycomponents/Background/BlurBackground.svelte";
 	import AlbumInfos from "$lib/mycomponents/AlbumInfos.svelte";
+	import Controls from "$lib/mycomponents/Controls.svelte";
+	import type { EventDispatcher } from "svelte";
 
 	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
@@ -94,6 +96,12 @@
 		tweenedVolume.set(currentVolume);
 	};
 
+	const switchVideo = (e: CustomEvent) => {
+		console.log(e.detail.value);
+		bgResize(windowWidth, windowHeight);
+		handleResize(windowWidth, windowHeight);
+		playVideo(e.detail.value ? currentPosition - 2 : currentPosition);
+	};
 	const checkPosition = (e: Event) => {
 		if (isPlayerReady) {
 			const scrollY = window.scrollY;
@@ -125,11 +133,6 @@
 		if (isPlayerReady) {
 			player.volume = $tweenedVolume / 100;
 		}
-	}
-
-	let positions: number[] = [];
-	for (let i = 0; i < albums.length; i++) {
-		positions.push(i + 1);
 	}
 </script>
 
@@ -169,26 +172,15 @@
 					} `}
 				/>
 				<AlbumInfos {isPreTransition} {isTransitioning} {currentPosition} />
-				<div class=" top-[400px] flex w-full flex-wrap gap-4">
-					{#each positions as position}
-						<button
-							on:click={() => {
-								bgResize(windowWidth, windowHeight);
-								handleResize(windowWidth, windowHeight);
-								playVideo(positions.length - position);
-							}}
-							class={`rounded-md py-2 transition-all duration-200 ${
-								currentPosition == positions.length - position + 1
-									? "bg-orange-600 px-8"
-									: "bg-cyan-500 px-4"
-							}`}
-						>
-							{positions.length + 1 - position}
-						</button>
-					{/each}
-				</div>
-				<VolumeSlider bind:currentVolume />
-				<p>volume: {currentVolume / 100}</p>
+
+				<Controls
+					bind:currentVolume
+					bind:currentPosition
+					on:switch={switchVideo}
+					{isTransitioning}
+					{isPreTransition}
+				/>
+
 				<div
 					class={` pointer-events-none fixed -left-1/2 top-[26%] h-screen w-[200vw] scale-[0.70] md:top-[19%] md:scale-[0.85] lg:left-[-20%] lg:top-0 lg:scale-100`}
 				>
@@ -209,8 +201,6 @@
 						</div>
 					</div>
 				</div>
-
-				<p>try scrolling down</p>
 			</div>
 		</div>
 	</TvSequence>

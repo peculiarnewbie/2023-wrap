@@ -9,6 +9,9 @@ module.exports = {
 			colors: {
 				"media-brand": "rgb(var(--media-brand) / <alpha-value>)",
 				"media-focus": "rgb(var(--media-focus) / <alpha-value>)"
+			},
+			fontFamily: {
+				lato: ["Salsa", "cursive"]
 			}
 		}
 	},
