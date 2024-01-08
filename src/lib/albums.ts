@@ -227,3 +227,5 @@ export let albums: {
 		}
 	}
 ];
+
+export let albumLength = albums.length;
