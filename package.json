@@ -35,6 +35,7 @@
   "type": "module",
   "dependencies": {
     "media-icons": "^0.10.0",
+    "posthog-js": "^1.96.1",
     "tailwindcss-animate": "^1.0.7",
     "vidstack": "next"
   }
