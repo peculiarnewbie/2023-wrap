@@ -4,7 +4,7 @@ Command: npx @threlte/gltf@2.0.1 ./TV Foreground.glb --transform
 -->
 
 <script>
-	import { Group } from "three";
+	import { Group, MeshPhysicalMaterial } from "three";
 	import { T, forwardEventHandlers } from "@threlte/core";
 	import { useGltf } from "@threlte/extras";
 	import { tvPosition, tvRotation, tvScale } from "$lib/stores";
@@ -20,13 +20,13 @@ Command: npx @threlte/gltf@2.0.1 ./TV Foreground.glb --transform
 	{#await gltf}
 		<slot name="fallback" />
 	{:then gltf}
-		<T.Mesh
-			geometry={gltf.nodes.Cube002.geometry}
-			material={gltf.nodes.Cube002.material}
-			position={$tvPosition}
-			rotation={$tvRotation}
-			scale={$tvScale}
-		/>
+		<T.Group position={$tvPosition} rotation={$tvRotation} scale={$tvScale}>
+			<T.Mesh geometry={gltf.nodes.Cube003.geometry}>
+				<T.MeshPhysicalMaterial color="#FF8A5B" metalness={0.8} roughness={0.7} />
+			</T.Mesh>
+			<T.Mesh geometry={gltf.nodes.Cube003_1.geometry} material={gltf.materials.Button} />
+			<T.Mesh geometry={gltf.nodes.Cube003_2.geometry} material={gltf.materials.disk} />
+		</T.Group>
 	{:catch error}
 		<slot name="error" {error} />
 	{/await}

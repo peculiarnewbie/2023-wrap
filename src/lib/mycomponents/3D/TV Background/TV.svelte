@@ -20,13 +20,14 @@ Command: npx @threlte/gltf@2.0.1 ./TV.glb --transform
 	{#await gltf}
 		<slot name="fallback" />
 	{:then gltf}
-		<T.Mesh
-			geometry={gltf.nodes.Cube.geometry}
-			material={gltf.nodes.Cube.material}
-			position={$tvPosition}
-			rotation={$tvRotation}
-			scale={$tvScale}
-		/>
+		<T.Group position={$tvPosition} rotation={$tvRotation} scale={$tvScale}>
+			<T.Mesh geometry={gltf.nodes.Cube_1.geometry}>
+				<T.MeshPhysicalMaterial color="#FF8A5B" metalness={0.8} roughness={0.7} />
+			</T.Mesh>
+			<T.Mesh geometry={gltf.nodes.Cube_2.geometry} material={gltf.materials.Screen} />
+			<T.Mesh geometry={gltf.nodes.Cube_3.geometry} material={gltf.materials.Button} />
+			<T.Mesh geometry={gltf.nodes.Cube_4.geometry} material={gltf.materials.disk} />
+		</T.Group>
 	{:catch error}
 		<slot name="error" {error} />
 	{/await}

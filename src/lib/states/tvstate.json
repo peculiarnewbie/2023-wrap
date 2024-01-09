@@ -511,7 +511,7 @@
                   },
                   {
                     "id": "HE68_7Ppv8",
-                    "position": 5.3,
+                    "position": 5.267,
                     "connectedRight": true,
                     "handles": [
                       0.5,
@@ -523,7 +523,7 @@
                     "value": 0
                   },
                   {
-                    "id": "wr0LqMcwdc",
+                    "id": "TBpX6pROOu",
                     "position": 5.467,
                     "connectedRight": true,
                     "handles": [
@@ -533,7 +533,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 21
+                    "value": 46.46987467291072
                   },
                   {
                     "id": "VpXReJ2t_q",
@@ -4917,6 +4917,7 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "1r2B19KqXtCx2xED",
     "s6Mkv2zCQ8xsRcQn",
     "dwzxKFi6y6efv63W",
     "xK3gyZ6RTtVoJKeR",
