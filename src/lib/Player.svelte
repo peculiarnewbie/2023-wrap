@@ -61,7 +61,7 @@
 	}
 
 	$: {
-		console.log("video changed: getting ready", videoProps.title);
+		//console.log("video changed: getting ready", videoProps.title);
 		if (videoProps.src != currentSrc) {
 			currentSrc = videoProps.src;
 			isPlayerReady = false;
@@ -70,6 +70,7 @@
 </script>
 
 <media-player
+	id="music-video"
 	class="aspect-video h-full overflow-hidden rounded-md bg-slate-900 font-sans text-white ring-media-focus data-[focus]:ring-4"
 	title={videoProps.title}
 	src={videoProps.src}

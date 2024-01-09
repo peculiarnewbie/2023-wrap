@@ -18,14 +18,18 @@
 	import AlbumInfos from "$lib/mycomponents/AlbumInfos.svelte";
 	import Controls from "$lib/mycomponents/Controls.svelte";
 	import type { EventDispatcher } from "svelte";
+	import { goto } from "$app/navigation";
 
 	let isPlayButtonDestroyed = false;
 	let isPlayerReady = false;
 	let isStarted = false;
 	let player: MediaPlayerElement;
-	let currentVideoProps = albums[19].videoProps;
 
-	let currentPosition: number = 20;
+	const urlParams = new URLSearchParams(window.location.search);
+	const currentIndex = urlParams.get("i") ?? "20";
+
+	let currentPosition: number = parseInt(currentIndex);
+	let currentVideoProps = albums[currentPosition - 1].videoProps;
 	let currentVolume = 50;
 	let tweenedVolume = tweened(50);
 
@@ -44,7 +48,7 @@
 
 	const endPreTransition = (position: number) => {
 		isPreTransition = false;
-		console.log(position);
+		//console.log(position);
 		currentPosition = position;
 	};
 
@@ -76,7 +80,7 @@
 		else {
 			transitionHandler(index + 1);
 			tvSequenceStatus = StateEnums.transition;
-			tweenedVolume.set(0);
+			tweenedVolume.set(-1);
 			await new Promise((resolve) => {
 				setTimeout(resolve, 1000);
 			});
@@ -86,7 +90,7 @@
 
 		currentVideoProps = albums[index].videoProps;
 		while (!isPlayerReady) {
-			console.log("waiting for player");
+			//console.log("waiting for player");
 			await new Promise((resolve) => {
 				setTimeout(resolve, 100);
 			});
@@ -94,10 +98,11 @@
 		//player.paused = false;
 		player.currentTime = currentVideoProps.startTime;
 		tweenedVolume.set(currentVolume);
+		goto(`?i=${currentPosition}`);
 	};
 
 	const switchVideo = (e: CustomEvent) => {
-		console.log(e.detail.value);
+		//console.log(e.detail.value);
 		bgResize(windowWidth, windowHeight);
 		handleResize(windowWidth, windowHeight);
 		playVideo(e.detail.value ? currentPosition - 2 : currentPosition);
@@ -122,7 +127,15 @@
 		await new Promise((resolve) => {
 			setTimeout(resolve, 1000);
 		});
-		await playVideo(19);
+		await playVideo(currentPosition - 1);
+	};
+
+	const setPlayerVolume = (vol: number, player: MediaPlayerElement) => {
+		if (vol < 1) player.muted = true;
+		else {
+			player.muted = false;
+			player.volume = vol / 100;
+		}
 	};
 
 	$: {
@@ -131,7 +144,7 @@
 
 	$: {
 		if (isPlayerReady) {
-			player.volume = $tweenedVolume / 100;
+			setPlayerVolume($tweenedVolume, player);
 		}
 	}
 </script>

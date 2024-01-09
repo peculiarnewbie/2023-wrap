@@ -4,7 +4,6 @@
 	import SliderThumb from "./SliderThumb.svelte";
 	export let currentVolume: number;
 
-	let focus = false;
 	let active = false;
 	let dragging = false;
 
@@ -24,7 +23,6 @@
 		if (e.type == "pointerdown") {
 			dragging = true;
 			group.setAttribute("data-dragging", "");
-			changeVolume(e);
 			document.addEventListener("pointermove", changeVolume);
 			document.addEventListener("pointerup", setDragging);
 		} else if (e.type == "pointerup") {
@@ -36,6 +34,7 @@
 				group.removeAttribute("data-active");
 			}
 		}
+		changeVolume(e);
 	};
 
 	const setGroupFocus = (focus: boolean) => {

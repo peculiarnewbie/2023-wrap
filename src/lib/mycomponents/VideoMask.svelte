@@ -16,7 +16,7 @@
 	let videoW = 484;
 
 	const resizeVideo = (w: number, h: number) => {
-		console.log(h);
+		//console.log(h);
 		scale = h / 1113;
 	};
 

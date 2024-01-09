@@ -28,7 +28,7 @@
 	};
 
 	onMount(() => {
-		console.log(canvas);
+		//console.log(canvas);
 	});
 </script>
 
