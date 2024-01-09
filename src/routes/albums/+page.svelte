@@ -149,14 +149,6 @@
 	}
 </script>
 
-<div
-	id="loadingText"
-	class={` pointer-events-none fixed h-screen w-screen items-center justify-center pb-10 ${
-		isStarted ? "hidden" : "flex"
-	}`}
->
-	<div class=" text-2xl text-slate-200">loading...</div>
-</div>
 {#if !isPlayButtonDestroyed}
 	<PlayButtonCanvas on:start={onStart} on:destroy={() => (isPlayButtonDestroyed = true)} />
 {/if}

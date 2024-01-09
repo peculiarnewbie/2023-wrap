@@ -1,20 +1,13 @@
 <script lang="ts">
 	import "../../app.css";
-	import posthog from "posthog-js";
-	import { PUBLIC_DEV } from "$env/static/public";
-	import { onMount } from "svelte";
-
-	onMount(() => {
-		if (!PUBLIC_DEV) {
-			posthog.init("phc_TKXoMp1iLDuHtw8lMrBEKKAKwc8uouhxBJS8tNYYiQb", {
-				api_host: "https://us.posthog.com"
-			});
-
-			posthog.capture("visit");
-		}
-	});
 </script>
 
 <div class="relative h-screen w-screen">
+	<div
+		id="loadingText"
+		class={` pointer-events-none fixed flex h-screen w-screen items-center justify-center pb-10`}
+	>
+		<div class=" text-2xl text-slate-200">loading...</div>
+	</div>
 	<slot />
 </div>
