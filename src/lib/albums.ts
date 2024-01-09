@@ -14,7 +14,7 @@ export let albums: {
 			title: "Paramore - Running Out of Time",
 			src: "https://www.youtube.com/watch?v=toKJP3luQbI",
 			startTime: 58,
-			alt: "my favorite"
+			alt: "they'll come back... right?"
 		}
 	},
 	{
@@ -25,7 +25,7 @@ export let albums: {
 			title: "Black Country, New Road - 'Live at Bush Hall'",
 			src: "https://www.youtube.com/watch?v=VbHV8oObR54&t=2751s",
 			startTime: 2725.5,
-			alt: "so happy they're still together"
+			alt: "BFF stands for BC,NR Friends Forever"
 		}
 	},
 	{
@@ -47,7 +47,7 @@ export let albums: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=OLeCIRC4taY",
 			startTime: 158.8,
-			alt: "insane production"
+			alt: "how is he real"
 		}
 	},
 	{
@@ -58,7 +58,7 @@ export let albums: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=bIX_ouNJsTs",
 			startTime: 181.5,
-			alt: "feels"
+			alt: "new rock queens (kings)"
 		}
 	},
 	{
@@ -80,7 +80,7 @@ export let albums: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=s9AMFQbxj1Y",
 			startTime: 132,
-			alt: "variety with identity"
+			alt: "that is actually what it is"
 		}
 	},
 	{
@@ -113,7 +113,7 @@ export let albums: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=hxgcz_6GKX0",
 			startTime: 119.5,
-			alt: "how can pop be so distinct"
+			alt: "no need to tell me to not leave"
 		}
 	},
 	{
@@ -190,7 +190,7 @@ export let albums: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=1YPtbploIyU",
 			startTime: 79.5,
-			alt: "the word 'lush'"
+			alt: "the word lush"
 		}
 	},
 	{
@@ -223,7 +223,7 @@ export let albums: {
 			title: "",
 			src: "https://www.youtube.com/watch?v=fd6tyv8GowY",
 			startTime: 154.7,
-			alt: "hard to believe that this is a debut"
+			alt: "boy oh boy 2023 is so good"
 		}
 	}
 ];

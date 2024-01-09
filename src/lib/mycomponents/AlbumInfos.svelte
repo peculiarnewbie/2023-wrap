@@ -36,7 +36,7 @@
 	</div>
 	<div class="h-max shrink-0 overflow-hidden pb-4">
 		<div
-			class={` font-lato pl-2 text-lg transition-transform duration-700 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl
+			class={` pl-2 font-lato text-lg transition-transform duration-700 sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl
 			${isTransitioning ? " -translate-y-28" : "translate-y-0 "}
 		`}
 		>
@@ -70,6 +70,13 @@
 			src={`/Albums/${currentPosition}.webp`}
 			alt="album art"
 		/>
+		<p
+			class={` hidden pt-2 text-base italic transition-opacity duration-500 lg:flex  ${
+				isTransitioning ? "opacity-0" : "opacity-50"
+			}`}
+		>
+			{albums[currentPosition - 1].videoProps.alt}
+		</p>
 		<div class="p-2" />
 	</div>
 </div>
