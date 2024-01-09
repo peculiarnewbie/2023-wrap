@@ -152,8 +152,10 @@
 			</button>
 		</div>
 
-		<VolumeSlider bind:currentVolume />
-		<p>volume: {currentVolume}%</p>
+		<div class="flex flex-col items-center">
+			<VolumeSlider bind:currentVolume />
+			<p>volume: {currentVolume}%</p>
+		</div>
 	</div>
 	<div class="flex w-full items-center justify-center gap-4 p-3 lg:justify-end">
 		<a

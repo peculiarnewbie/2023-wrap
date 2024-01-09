@@ -73,7 +73,7 @@
 	aria-valuemin="0"
 	aria-valuemax="100"
 	aria-valuenow={currentVolume}
-	class="group relative mx-[7.5px] inline-flex h-10 w-32 cursor-pointer touch-none select-none items-center outline-none aria-hidden:hidden"
+	class="group relative mx-[7.5px] inline-flex h-6 w-32 cursor-pointer touch-none select-none items-center outline-none aria-hidden:hidden"
 >
 	<!-- Track -->
 	<div class="relative z-0 h-[5px] w-full rounded-sm bg-white/30 ring-media-focus">

@@ -26,10 +26,6 @@
 	const sendEvent = () => {
 		dispatch("start");
 	};
-
-	onMount(() => {
-		//console.log(canvas);
-	});
 </script>
 
 <div class={` ${isStarted ? "pointer-events-none" : ""} h-screen w-screen`}>
